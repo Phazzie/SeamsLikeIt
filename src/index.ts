@@ -28,6 +28,8 @@ import { generateContractsTool } from './tools/generate-contracts.js';
 import { createStubsTool } from './tools/create-stubs.js';
 import { validateIntegrationTool } from './tools/validate-integration.js';
 import { orchestrateSimpleTool } from './tools/orchestrate-simple.js';
+import { regenerateComponentTool } from './tools/regenerate-component.js';
+import { analyzeForRegenerationTool } from './tools/analyze-for-regeneration.js';
 
 const server = new Server(
   {
@@ -127,6 +129,57 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['requirements'],
         },
       },
+      {
+        name: 'sdd_analyze_for_regeneration',
+        description: 'Analyze project to identify components that should be regenerated rather than debugged',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            project: {
+              type: 'object',
+              description: 'SDD project object to analyze',
+            },
+            issues: {
+              type: 'array',
+              description: 'List of reported issues or bugs',
+              items: { type: 'string' },
+            },
+            codeSmells: {
+              type: 'array',
+              description: 'List of identified code smells',
+              items: { type: 'string' },
+            },
+          },
+          required: ['project'],
+        },
+      },
+      {
+        name: 'sdd_regenerate_component',
+        description: 'Regenerate a component from its contracts and blueprint (SDD refactoring)',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            project: {
+              type: 'object',
+              description: 'SDD project containing the component',
+            },
+            componentId: {
+              type: 'string',
+              description: 'ID of the component to regenerate',
+            },
+            reason: {
+              type: 'string',
+              description: 'Why this component needs regeneration',
+            },
+            improvements: {
+              type: 'array',
+              description: 'Specific improvements to make during regeneration',
+              items: { type: 'string' },
+            },
+          },
+          required: ['project', 'componentId'],
+        },
+      },
     ],
   };
 });
@@ -150,6 +203,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       
       case 'sdd_orchestrate_simple':
         return await orchestrateSimpleTool(args);
+      
+      case 'sdd_analyze_for_regeneration':
+        return await analyzeForRegenerationTool(args);
+      
+      case 'sdd_regenerate_component':
+        return await regenerateComponentTool(args);
       
       default:
         throw new Error(`Unknown tool: ${name}`);

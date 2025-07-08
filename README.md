@@ -108,6 +108,27 @@ Use sdd_orchestrate_simple with:
 - outputPath: "/path/to/save/project" (optional)
 ```
 
+#### 6. `sdd_analyze_for_regeneration` 🆕
+Identify components that should be regenerated rather than debugged (SDD refactoring).
+
+```typescript
+Use sdd_analyze_for_regeneration with:
+- project: <your SDD project>
+- issues: ["Integration failing", "Performance degraded"]
+- codeSmells: ["Complex callbacks", "Unclear errors"]
+```
+
+#### 7. `sdd_regenerate_component` 🆕
+Regenerate a component from its contracts - the SDD way to refactor!
+
+```typescript
+Use sdd_regenerate_component with:
+- project: <your SDD project>
+- componentId: "user-service"
+- reason: "Complex integration issues"
+- improvements: ["Add retry logic", "Simplify error handling"]
+```
+
 ## Domain-Specific Intelligence
 
 The server includes specialized patterns for:
@@ -230,6 +251,8 @@ Using OpenAI's gpt-4o-mini model, typical costs per operation:
 - 🛡️ **Type Safety**: Full TypeScript with ContractResult pattern
 - 📊 **Cost Tracking**: Monitor AI usage costs per operation
 - 🔄 **Regeneration Philosophy**: Broken? Regenerate from blueprint instead of debugging
+- 🚀 **SDD Refactoring**: Analyze and regenerate components instead of traditional debugging
+- 🧠 **Advanced AI Prompting**: Reasoning traces, self-validation, mental models
 
 ## Contributing
 
