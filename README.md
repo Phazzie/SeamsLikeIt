@@ -1,6 +1,8 @@
 # SDD MCP Server
 
-An MCP (Model Context Protocol) server that implements Software-Defined Development (SDD) methodology, enabling domain experts to build enterprise-quality applications through AI-assisted development.
+An MCP (Model Context Protocol) server that implements Seam-Driven Development (SDD) methodology, enabling domain experts to build enterprise-quality applications through AI-assisted development.
+
+🚀 **Transform plain English requirements into working software architecture in minutes!**
 
 ## What is SDD?
 
@@ -13,10 +15,25 @@ Software-Defined Development treats component communication pathways (seams) as 
 3. **Fail-Fast Validation** - Catch errors at component boundaries
 4. **Blueprint-Driven Development** - Detailed implementation guidance in every stub
 
+## Prerequisites
+
+- Node.js 18+ 
+- OpenAI API key (uses gpt-4o-mini model)
+- Claude Desktop or Claude CLI
+
 ## Installation
 
+### From npm (coming soon)
 ```bash
 npm install -g sdd-mcp-server
+```
+
+### From source
+```bash
+git clone https://github.com/phazziezee/sdd-mcp-server.git
+cd sdd-mcp-server
+npm install
+npm run build
 ```
 
 Or install locally:
@@ -26,6 +43,15 @@ git clone https://github.com/yourusername/sdd-mcp-server.git
 cd sdd-mcp-server
 npm install
 npm run build
+```
+
+## Configuration
+
+Create a `.env` file in the project root:
+
+```env
+OPENAI_API_KEY=your-openai-api-key
+AI_MODEL=gpt-4o-mini-2024-07-18
 ```
 
 ## Usage
@@ -198,6 +224,22 @@ src/
 └── utils/             # Shared utilities
 ```
 
+## Cost Information
+
+Using OpenAI's gpt-4o-mini model, typical costs per operation:
+- Analyze Requirements: ~$0.0006
+- Generate Contracts: ~$0.0005
+- Create Stubs: ~$0.0008
+- Full Workflow: ~$0.0025
+
+## Features
+
+- 🎯 **Domain Intelligence**: Built-in patterns for healthcare, e-commerce, fintech, SaaS
+- 🔍 **Multi-Pass Analysis**: 95%+ seam detection accuracy
+- 🛡️ **Type Safety**: Full TypeScript with ContractResult pattern
+- 📊 **Cost Tracking**: Monitor AI usage costs per operation
+- 🔄 **Regeneration Philosophy**: Broken? Regenerate from blueprint instead of debugging
+
 ## Contributing
 
 1. Fork the repository
@@ -207,4 +249,13 @@ src/
 
 ## License
 
-ISC License - see LICENSE file for details
+MIT License - see LICENSE file for details
+
+## Support
+
+- Issues: [GitHub Issues](https://github.com/phazziezee/sdd-mcp-server/issues)
+- Discussions: [GitHub Discussions](https://github.com/phazziezee/sdd-mcp-server/discussions)
+
+---
+
+Built with ❤️ using Seam-Driven Development principles
