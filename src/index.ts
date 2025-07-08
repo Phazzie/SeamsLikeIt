@@ -30,6 +30,8 @@ import { validateIntegrationTool } from './tools/validate-integration.js';
 import { orchestrateSimpleTool } from './tools/orchestrate-simple.js';
 import { regenerateComponentTool } from './tools/regenerate-component.js';
 import { analyzeForRegenerationTool } from './tools/analyze-for-regeneration.js';
+import { evolveContractTool } from './tools/evolve-contract.js';
+import { orchestrateParallelTool } from './tools/orchestrate-parallel.js';
 
 const server = new Server(
   {
@@ -180,6 +182,56 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['project', 'componentId'],
         },
       },
+      {
+        name: 'sdd_evolve_contract',
+        description: 'Evolve contracts carefully with versioning and migration strategies',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            project: {
+              type: 'object',
+              description: 'SDD project containing the contract',
+            },
+            contractId: {
+              type: 'string',
+              description: 'ID of the contract to evolve',
+            },
+            proposedChanges: {
+              type: 'array',
+              description: 'List of proposed changes to the contract',
+              items: { type: 'string' },
+            },
+            breakingChangeStrategy: {
+              type: 'string',
+              enum: ['version', 'migrate', 'deprecate'],
+              description: 'Strategy for handling breaking changes',
+            },
+          },
+          required: ['project', 'contractId', 'proposedChanges'],
+        },
+      },
+      {
+        name: 'sdd_orchestrate_parallel',
+        description: 'Run SDD workflow in parallel for 30-40% speed improvement',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            requirements: {
+              type: 'string',
+              description: 'Plain English description of what needs to be built',
+            },
+            domain: {
+              type: 'string',
+              description: 'Optional domain context (healthcare, ecommerce, fintech, etc.)',
+            },
+            outputPath: {
+              type: 'string',
+              description: 'Path where to save the generated project files',
+            },
+          },
+          required: ['requirements'],
+        },
+      },
     ],
   };
 });
@@ -209,6 +261,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       
       case 'sdd_regenerate_component':
         return await regenerateComponentTool(args);
+      
+      case 'sdd_evolve_contract':
+        return await evolveContractTool(args);
+      
+      case 'sdd_orchestrate_parallel':
+        return await orchestrateParallelTool(args);
       
       default:
         throw new Error(`Unknown tool: ${name}`);

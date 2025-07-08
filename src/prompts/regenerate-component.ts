@@ -4,7 +4,9 @@
  * Implements SDD's "regeneration over debugging" philosophy
  */
 
-export const REGENERATE_COMPONENT_PROMPT = `You are implementing SDD's regeneration philosophy.
+export const REGENERATE_COMPONENT_PROMPT = `You are implementing Seam-Driven Development's regeneration philosophy.
+
+CONTEXT: In Seam-Driven Development, contracts between components are sacred and immutable, but component implementations are disposable. When code has problems, we regenerate the entire component from its contracts rather than debugging.
 
 MINDSET: "I don't debug because I can't debug. I regenerate from blueprints."
 

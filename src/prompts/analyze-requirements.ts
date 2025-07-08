@@ -4,7 +4,10 @@
  * These prompts guide AI to identify components and seams from plain English requirements
  */
 
-export const ANALYZE_REQUIREMENTS_PROMPT = `You are an expert system architect analyzing requirements for SDD implementation.
+export const ANALYZE_REQUIREMENTS_PROMPT = `You are an expert system architect analyzing requirements for Seam-Driven Development implementation.
+
+SEAM-DRIVEN DEVELOPMENT CONTEXT:
+Seam-Driven Development (SDD) treats the communication pathways between components (called "seams") as the most important part of the architecture. Components are connected by explicit contracts that define exactly how they communicate. This enables reliable AI-assisted development because clear contracts make integration predictable.
 
 MENTAL MODEL: Think of the system as a restaurant:
 - Components = Kitchen stations (grill, prep, dessert)
