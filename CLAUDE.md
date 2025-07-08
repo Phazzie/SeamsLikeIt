@@ -123,7 +123,7 @@ We aim for complete seam identification through:
 4. **Test with real examples** not just mocks
 5. **Think like Marcus** (non-coder) not like Sarah (developer)
 
-## Session-Specific Learnings (Updated Jan 7, 2024)
+## Session-Specific Learnings (Updated Jan 8, 2025)
 
 ### Module System Configuration
 - Use CommonJS for MCP servers (not ES modules)
@@ -140,6 +140,25 @@ We aim for complete seam identification through:
 - `claude doctor` - Run comprehensive health check
 - `update-sdd-docs` - Update all documentation files
 - `grep -r "TODO\|FIXME" src/` - Find pending work
+
+### OpenAI Integration Best Practices (Jan 8, 2025)
+1. **No Mock Fallback** - Always require real AI API key
+2. **Advanced Prompting Techniques**:
+   - Add reasoning traces before output
+   - Use mental models (restaurant analogy for components/seams)
+   - Include self-validation checklists
+   - Show "mistakes to avoid" patterns
+3. **API Optimization**:
+   - Use `response_format: { type: 'json_object' }` for structured output
+   - Add `frequency_penalty: 0.1` to reduce repetition
+   - Add `presence_penalty: 0.1` for diverse vocabulary
+   - Use `top_p: 0.95` for creativity/accuracy balance
+4. **Cost Efficiency**:
+   - gpt-4o-mini model: ~$0.0006 per analysis
+   - Full workflow: ~$0.0025 total
+5. **Error Handling**:
+   - Validate prompts contain "json" when using json_object format
+   - Always validate API key exists before creating client
 
 ## META: Improving These Instructions
 

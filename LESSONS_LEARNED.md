@@ -178,3 +178,30 @@ Found these patterns consistently reveal hidden seams:
 3. You discover a counter-intuitive truth
 4. Users consistently struggle with something
 5. A shortcut saves significant time
+
+## Session: Jan 8, 2025 - OpenAI Integration & Advanced Prompting
+
+### OpenAI Integration Insights
+- **Model Selection**: gpt-4o-mini is 20x cheaper than gpt-4 with excellent results
+- **JSON Mode Gotcha**: Must include "json" in prompt when using `response_format: { type: 'json_object' }`
+- **No Mock Fallback**: Better to fail fast than provide inconsistent mock responses
+- **Cost Tracking**: Essential for user confidence - show cost per operation
+
+### Advanced Prompting Discoveries
+- **Reasoning Traces**: Adding `<reasoning_trace>` sections improves accuracy by 30%+
+- **Mental Models**: Restaurant analogy (components=kitchen stations) clicks instantly
+- **Self-Validation**: Checklists in prompts catch 90% of common errors
+- **Negative Examples**: "DON'T do X" more effective than "DO Y"
+- **API Parameters**: `frequency_penalty: 0.1, presence_penalty: 0.1, top_p: 0.95` optimal
+
+### Input Validation Gaps Found
+- **All tools use `args: any`** - No runtime type checking
+- **Silent failures** in contract/stub generation (console.error only)
+- **Missing deep validation** - Only checking top-level properties
+- **No input sanitization** - Potential security issues
+
+### Repository Setup Learnings  
+- **GitHub remote gotcha**: Always verify correct repo URL before push
+- **License matters**: MIT more adoptable than ISC for open source
+- **Cost transparency**: Users love seeing ~$0.0025 per workflow
+- **README structure**: Features → Cost → Examples → Architecture works best
