@@ -26,12 +26,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/phazziezee/sdd-mcp-server.git"
+    "url": "https://github.com/Phazzie/SeamsLikeIt.git"
   },
   "bugs": {
-    "url": "https://github.com/phazziezee/sdd-mcp-server/issues"
+    "url": "https://github.com/Phazzie/SeamsLikeIt/issues"
   },
-  "homepage": "https://github.com/phazziezee/sdd-mcp-server#readme",
+  "homepage": "https://github.com/Phazzie/SeamsLikeIt#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.15.0",
     "@types/node": "^24.0.10",

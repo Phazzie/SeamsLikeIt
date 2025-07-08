@@ -30,17 +30,8 @@ npm install -g sdd-mcp-server
 
 ### From source
 ```bash
-git clone https://github.com/phazziezee/sdd-mcp-server.git
-cd sdd-mcp-server
-npm install
-npm run build
-```
-
-Or install locally:
-
-```bash
-git clone https://github.com/yourusername/sdd-mcp-server.git
-cd sdd-mcp-server
+git clone https://github.com/Phazzie/SeamsLikeIt.git
+cd SeamsLikeIt
 npm install
 npm run build
 ```
@@ -253,8 +244,8 @@ MIT License - see LICENSE file for details
 
 ## Support
 
-- Issues: [GitHub Issues](https://github.com/phazziezee/sdd-mcp-server/issues)
-- Discussions: [GitHub Discussions](https://github.com/phazziezee/sdd-mcp-server/discussions)
+- Issues: [GitHub Issues](https://github.com/Phazzie/SeamsLikeIt/issues)
+- Discussions: [GitHub Discussions](https://github.com/Phazzie/SeamsLikeIt/discussions)
 
 ---
 
