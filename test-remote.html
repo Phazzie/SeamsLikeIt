@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDD MCP Test Client</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        textarea { width: 100%; height: 200px; font-family: monospace; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        .output { background: #f4f4f4; padding: 10px; border-radius: 5px; white-space: pre-wrap; }
+        .error { color: red; }
+        .success { color: green; }
+        h1 { text-align: center; }
+        .config { background: #e9ecef; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🚀 SDD MCP Remote Test Client</h1>
+    
+    <div class="config">
+        <label>Server URL: <input type="text" id="serverUrl" value="http://localhost:3000" size="30"></label>
+        <label>API Key: <input type="text" id="apiKey" value="development-key" size="20"></label>
+        <button onclick="testConnection()">Test Connection</button>
+        <span id="status"></span>
+    </div>
+
+    <div class="container">
+        <div>
+            <h2>Input</h2>
+            <h3>Requirements</h3>
+            <textarea id="requirements" placeholder="Enter your requirements here...">I need a simple task management system where:
+- Users can create and assign tasks
+- Tasks have priority levels and due dates
+- Email notifications for overdue tasks
+- Dashboard shows team progress</textarea>
+            
+            <h3>Options</h3>
+            <label>Domain: 
+                <select id="domain">
+                    <option value="general">General</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="ecommerce">E-commerce</option>
+                    <option value="fintech">Fintech</option>
+                </select>
+            </label>
+            
+            <h3>Actions</h3>
+            <button onclick="analyzeRequirements()">1. Analyze Requirements</button>
+            <button onclick="generateContracts()">2. Generate Contracts</button>
+            <button onclick="createStubs()">3. Create Stubs</button>
+            <button onclick="orchestrateSimple()">Run All (Sequential)</button>
+            <button onclick="orchestrateParallel()">Run All (Parallel - Faster!)</button>
+        </div>
+        
+        <div>
+            <h2>Output</h2>
+            <div id="output" class="output">Ready to process...</div>
+        </div>
+    </div>
+
+    <script>
+        let currentProject = null;
+        
+        async function callTool(toolName, args) {
+            const serverUrl = document.getElementById('serverUrl').value;
+            const apiKey = document.getElementById('apiKey').value;
+            const output = document.getElementById('output');
+            
+            output.innerHTML = `Calling ${toolName}...`;
+            
+            try {
+                const response = await fetch(`${serverUrl}/tools/${toolName}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': apiKey
+                    },
+                    body: JSON.stringify(args)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    output.innerHTML = `<span class="success">✅ Success!</span>\n\n`;
+                    output.innerHTML += JSON.stringify(result.data, null, 2);
+                    
+                    if (result.metadata) {
+                        output.innerHTML += `\n\nMetadata: ${JSON.stringify(result.metadata, null, 2)}`;
+                    }
+                    
+                    currentProject = result.data;
+                    return result.data;
+                } else {
+                    output.innerHTML = `<span class="error">❌ Error: ${result.error}</span>`;
+                }
+            } catch (error) {
+                output.innerHTML = `<span class="error">❌ Network Error: ${error.message}</span>`;
+            }
+        }
+        
+        async function testConnection() {
+            const serverUrl = document.getElementById('serverUrl').value;
+            const status = document.getElementById('status');
+            
+            try {
+                const response = await fetch(`${serverUrl}/health`);
+                const data = await response.json();
+                status.innerHTML = `<span class="success">✅ Connected! ${data.tools} tools available</span>`;
+            } catch (error) {
+                status.innerHTML = `<span class="error">❌ Cannot connect to server</span>`;
+            }
+        }
+        
+        function analyzeRequirements() {
+            const requirements = document.getElementById('requirements').value;
+            const domain = document.getElementById('domain').value;
+            callTool('analyze-requirements', { requirements, domain });
+        }
+        
+        function generateContracts() {
+            if (!currentProject) {
+                alert('Please analyze requirements first!');
+                return;
+            }
+            callTool('generate-contracts', { project: currentProject });
+        }
+        
+        function createStubs() {
+            if (!currentProject || !currentProject.contracts) {
+                alert('Please generate contracts first!');
+                return;
+            }
+            callTool('create-stubs', { project: currentProject });
+        }
+        
+        function orchestrateSimple() {
+            const requirements = document.getElementById('requirements').value;
+            const domain = document.getElementById('domain').value;
+            callTool('orchestrate-simple', { requirements, domain });
+        }
+        
+        function orchestrateParallel() {
+            const requirements = document.getElementById('requirements').value;
+            const domain = document.getElementById('domain').value;
+            callTool('orchestrate-parallel', { requirements, domain });
+        }
+        
+        // Test connection on load
+        window.onload = testConnection;
+    </script>
+</body>
+</html>

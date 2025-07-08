@@ -10,6 +10,8 @@
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
+    "http": "tsx src/http-server.ts",
+    "http:prod": "node dist/http-server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "tsc --noEmit",
@@ -34,8 +36,12 @@
   "homepage": "https://github.com/Phazzie/SeamsLikeIt#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.15.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/node": "^24.0.10",
+    "cors": "^2.8.5",
     "dotenv": "^17.0.1",
+    "express": "^5.1.0",
     "openai": "^5.8.2",
     "typescript": "^5.8.3",
     "zod": "^3.25.75"

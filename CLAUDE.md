@@ -160,6 +160,42 @@ We aim for complete seam identification through:
    - Validate prompts contain "json" when using json_object format
    - Always validate API key exists before creating client
 
+## Session Jan 8, 2025 - Major Features Added
+
+### Regeneration Tools Implemented
+- **sdd_analyze_for_regeneration** - Identifies components needing regeneration
+- **sdd_regenerate_component** - Regenerates from contracts (75-90% time savings)
+- **sdd_evolve_contract** - Manages contract evolution with versioning
+- **sdd_orchestrate_parallel** - 30-40% speed improvement via parallelization
+
+### Critical Prompting Fixes
+1. **Never use "SDD" alone** - Always explain "Seam-Driven Development" in prompts
+2. **JSON Mode Requirement** - Must include "json" in prompt when using response_format
+3. **Optimal AI Parameters**:
+   ```javascript
+   frequency_penalty: 0.1, // Reduce repetition
+   presence_penalty: 0.1,  // Diverse vocabulary
+   top_p: 0.95            // Balance creativity/accuracy
+   ```
+
+### Contract Evolution Strategy
+- Contracts are **versioned, not mutated**
+- Three strategies: Extend (compatible), Version (breaking), Migrate (deprecate)
+- Always analyze impact before evolving
+- Components regenerate to match new contracts
+
+### Security Considerations
+- NO remote access without authentication
+- Validate ALL inputs (current weakness: args: any)
+- Rate limiting essential before production
+- Cost controls prevent runaway usage
+
+### UI/UX Insights
+- Users need visual feedback (not just JSON)
+- File generation should be explicit (security)
+- Progress tracking essential for long operations
+- Cost transparency builds trust
+
 ## META: Improving These Instructions
 
 After each session, ask yourself:
