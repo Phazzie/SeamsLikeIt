@@ -22,12 +22,21 @@
     "ai",
     "code-generation"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Phazzie Zee <phazziezee@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phazziezee/sdd-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/phazziezee/sdd-mcp-server/issues"
+  },
+  "homepage": "https://github.com/phazziezee/sdd-mcp-server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.15.0",
     "@types/node": "^24.0.10",
     "dotenv": "^17.0.1",
+    "openai": "^5.8.2",
     "typescript": "^5.8.3",
     "zod": "^3.25.75"
   },

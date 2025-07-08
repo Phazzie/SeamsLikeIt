@@ -44,7 +44,6 @@ temp/
 # npm/yarn
 .npm/
 yarn.lock
-package-lock.json
 
 # TypeScript cache
 *.tscache

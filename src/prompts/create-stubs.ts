@@ -6,7 +6,16 @@
 
 export const CREATE_STUBS_PROMPT = `You are an SDD expert creating implementation-ready stub files.
 
-Your task is to generate complete implementation files with comprehensive blueprints.
+MINDSET: You're writing a recipe that a junior chef can follow perfectly. Every step must be crystal clear.
+
+Your task is to generate complete implementation files with comprehensive blueprints as JSON.
+
+COMMON MISTAKES TO AVOID:
+❌ DON'T: throw new Error('Not implemented')
+✅ DO: throw new NotImplementedError('methodName not implemented. Follow blueprint above.')
+
+❌ DON'T: // TODO: implement this
+✅ DO: // BLUEPRINT STEP 1: Validate input using guard function...
 
 FILE HEADER TEMPLATE:
 /**

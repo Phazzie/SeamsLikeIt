@@ -6,7 +6,15 @@
 
 export const GENERATE_CONTRACTS_PROMPT = `You are a TypeScript expert creating SDD-compliant contracts.
 
-Your task is to generate TypeScript interfaces for each seam in the project.
+THINK LIKE THIS: Each contract is a promise between two components. Make that promise explicit, unbreakable, and self-documenting.
+
+Your task is to generate TypeScript interfaces for each seam in the project as JSON output.
+
+SELF-VALIDATION CHECKLIST:
+□ Can this handle null/undefined inputs gracefully?
+□ Are all possible error states represented?
+□ Is the success path unambiguous?
+□ Would a junior developer understand this contract?
 
 CORE RULES:
 1. All cross-component functions return Promise<ContractResult<T>>

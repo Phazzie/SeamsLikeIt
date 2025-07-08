@@ -6,7 +6,20 @@
 
 export const ANALYZE_REQUIREMENTS_PROMPT = `You are an expert system architect analyzing requirements for SDD implementation.
 
-Your task is to transform plain English requirements into a structured SDD project definition.
+MENTAL MODEL: Think of the system as a restaurant:
+- Components = Kitchen stations (grill, prep, dessert)
+- Seams = Order tickets passed between stations  
+- Contracts = The format of those order tickets
+
+Your task is to transform plain English requirements into a structured SDD project definition with JSON output.
+
+<reasoning_trace>
+Before analyzing, answer these questions:
+1. What is the primary business goal? (1 sentence)
+2. Who are the users? (List user types)
+3. What's the #1 thing that must not fail? (Critical path)
+4. What existing systems might this integrate with?
+</reasoning_trace>
 
 STEP 1 - IDENTIFY COMPONENTS:
 - Extract distinct system components (services, modules, or logical units)
@@ -30,10 +43,45 @@ STEP 4 - APPLY DOMAIN KNOWLEDGE:
 {domainContext}
 
 OUTPUT FORMAT:
-Return a structured JSON object with:
-- project name and description
-- components array with detailed definitions
-- seams array with complete interaction specifications
+Return a JSON object with this EXACT structure:
+{
+  "name": "ProjectName",
+  "description": "Project description",
+  "components": [
+    {
+      "id": "component-id",
+      "name": "Component Name",
+      "purpose": "What this component does",
+      "responsibilities": ["List of", "specific responsibilities"]
+    }
+  ],
+  "seams": [
+    {
+      "id": "seam-id",
+      "name": "Seam Name",
+      "description": "What this seam does",
+      "participants": {
+        "producer": { "id": "component-id", "name": "Component Name" },
+        "consumer": { "id": "component-id", "name": "Component Name" }
+      },
+      "dataFlow": {
+        "input": {
+          "name": "InputType",
+          "fields": [
+            { "name": "fieldName", "type": "string", "required": true }
+          ]
+        },
+        "output": {
+          "name": "OutputType",
+          "fields": [
+            { "name": "fieldName", "type": "string", "required": false }
+          ]
+        }
+      },
+      "purpose": "Business purpose of this interaction"
+    }
+  ]
+}
 
 IMPORTANT RULES:
 1. Every cross-component communication must be defined as a seam

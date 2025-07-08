@@ -136,3 +136,6 @@ function validateProjectStructure(project: any): { valid: boolean; errors: strin
     errors,
   };
 }
+
+// Export for testing
+export { analyzeRequirementsTool as analyzeRequirements };
