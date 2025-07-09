@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDD MCP Server - Secure Remote Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            color: #0066ff;
+            margin-bottom: 10px;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tool-button {
+            background: linear-gradient(135deg, #0066ff 0%, #004499 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+        
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+        }
+        
+        .output {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 200px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        .success { color: #00ff88; }
+        .error { color: #ff0066; }
+        .warning { color: #ffcc00; }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-family: inherit;
+        }
+        
+        .auth-section {
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #0066ff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 SDD MCP Server - Secure Test Interface</h1>
+        <p>Seam-Driven Development Tools - XSS Protected Version</p>
+        
+        <div class="auth-section">
+            <h3>🔐 Authentication</h3>
+            <input type="text" id="apiUrl" placeholder="API URL" value="http://localhost:3000">
+            <input type="password" id="apiKey" placeholder="API Key or JWT Token" value="">
+            <button onclick="testConnection()" class="tool-button">Test Connection</button>
+        </div>
+        
+        <h2>📋 Test Requirements</h2>
+        <textarea id="requirements" rows="5" placeholder="Enter your requirements here...">
+Create a simple user authentication system with:
+- User registration with email and password
+- Login functionality
+- JWT token generation
+- Password hashing
+- Basic user profile management</textarea>
+        
+        <label for="domain">Domain:</label>
+        <select id="domain">
+            <option value="">General</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="ecommerce">E-commerce</option>
+            <option value="fintech">Fintech</option>
+        </select>
+        
+        <h2>🛠️ Available Tools</h2>
+        <div class="tool-grid">
+            <button onclick="callTool('sdd_analyze_requirements')" class="tool-button">
+                📊 Analyze Requirements
+            </button>
+            <button onclick="callTool('sdd_orchestrate_simple')" class="tool-button">
+                🎯 Simple Orchestration
+            </button>
+            <button onclick="callTool('sdd_orchestrate_parallel')" class="tool-button">
+                ⚡ Parallel Orchestration
+            </button>
+            <button onclick="callTool('sdd_analyze_for_regeneration')" class="tool-button">
+                🔍 Analyze for Regeneration
+            </button>
+        </div>
+        
+        <h2>📤 Output</h2>
+        <div id="output" class="output">Ready to process...</div>
+    </div>
+    
+    <script>
+        let currentProject = null;
+        
+        // Security: Create text nodes instead of using innerHTML
+        function safeSetText(element, text) {
+            element.textContent = text;
+        }
+        
+        function safeAppendText(element, text, className = '') {
+            const span = document.createElement('span');
+            if (className) span.className = className;
+            span.textContent = text;
+            element.appendChild(span);
+        }
+        
+        async function callTool(toolName) {
+            const output = document.getElementById('output');
+            const apiUrl = document.getElementById('apiUrl').value;
+            const apiKey = document.getElementById('apiKey').value;
+            const requirements = document.getElementById('requirements').value;
+            const domain = document.getElementById('domain').value;
+            
+            // Clear output safely
+            output.textContent = '';
+            
+            // Show loading
+            const loadingDiv = document.createElement('div');
+            loadingDiv.innerHTML = '<span class="loading"></span> Processing...';
+            output.appendChild(loadingDiv);
+            
+            try {
+                let args = {};
+                
+                if (toolName === 'sdd_analyze_requirements') {
+                    args = { requirements, domain: domain || undefined };
+                } else if (toolName.includes('orchestrate')) {
+                    args = { 
+                        requirements, 
+                        domain: domain || undefined,
+                        parallel: toolName.includes('parallel')
+                    };
+                } else if (toolName === 'sdd_analyze_for_regeneration' && currentProject) {
+                    args = { projectData: currentProject };
+                }
+                
+                const headers = {
+                    'Content-Type': 'application/json'
+                };
+                
+                // Support both API key and JWT
+                if (apiKey.startsWith('Bearer ')) {
+                    headers['Authorization'] = apiKey;
+                } else {
+                    headers['X-API-Key'] = apiKey;
+                }
+                
+                const response = await fetch(`${apiUrl}/tools/${toolName}`, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify(args)
+                });
+                
+                const result = await response.json();
+                
+                // Clear output
+                output.textContent = '';
+                
+                if (result.success) {
+                    safeAppendText(output, '✅ Success!\\n\\n', 'success');
+                    
+                    // Safely display JSON data
+                    const pre = document.createElement('pre');
+                    pre.textContent = JSON.stringify(result.data, null, 2);
+                    output.appendChild(pre);
+                    
+                    if (result.metadata) {
+                        safeAppendText(output, '\\n\\nMetadata:\\n');
+                        const metaPre = document.createElement('pre');
+                        metaPre.textContent = JSON.stringify(result.metadata, null, 2);
+                        output.appendChild(metaPre);
+                    }
+                    
+                    currentProject = result.data;
+                    return result.data;
+                } else {
+                    safeAppendText(output, `❌ Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                output.textContent = '';
+                safeAppendText(output, `❌ Network Error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testConnection() {
+            const output = document.getElementById('output');
+            const apiUrl = document.getElementById('apiUrl').value;
+            const apiKey = document.getElementById('apiKey').value;
+            
+            output.textContent = 'Testing connection...';
+            
+            try {
+                const headers = {};
+                if (apiKey.startsWith('Bearer ')) {
+                    headers['Authorization'] = apiKey;
+                } else if (apiKey) {
+                    headers['X-API-Key'] = apiKey;
+                }
+                
+                const response = await fetch(`${apiUrl}/health`, { headers });
+                const data = await response.json();
+                
+                output.textContent = '';
+                if (response.ok) {
+                    safeAppendText(output, '✅ Connected successfully!\\n\\n', 'success');
+                    const pre = document.createElement('pre');
+                    pre.textContent = JSON.stringify(data, null, 2);
+                    output.appendChild(pre);
+                } else {
+                    safeAppendText(output, `❌ Connection failed: ${data.error || response.statusText}`, 'error');
+                }
+            } catch (error) {
+                output.textContent = '';
+                safeAppendText(output, `❌ Connection error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Auto-load API key from localStorage (but don't display it)
+        const savedApiKey = localStorage.getItem('sdd_api_key');
+        if (savedApiKey) {
+            document.getElementById('apiKey').value = savedApiKey;
+        }
+        
+        // Save API key when it changes (encrypted would be better)
+        document.getElementById('apiKey').addEventListener('change', (e) => {
+            localStorage.setItem('sdd_api_key', e.target.value);
+        });
+    </script>
+</body>
+</html>
