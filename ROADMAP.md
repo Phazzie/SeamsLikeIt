@@ -1,6 +1,6 @@
-# SDD MCP Server Roadmap
+# SeamsLikeIt Roadmap
 
-This document outlines the development path for the SDD MCP Server project. The closer to present, the more granular the tasks.
+This document outlines the development path for the SeamsLikeIt MCP Server project. The closer to present, the more granular the tasks.
 
 ## 🎯 North Star Goals
 
@@ -34,7 +34,7 @@ This document outlines the development path for the SDD MCP Server project. The 
   - [x] ~~Keep mock as fallback~~ Removed mock - require real AI
 - [x] Add configuration:
   - [x] Read OPENAI_API_KEY from env
-  - [x] Add model selection (gpt-4o-mini)
+  - [x] Add model selection (gpt-4.1-mini-2025-04-1)
   - [x] Add temperature configuration
 - [x] Test each tool with real OpenAI:
   - [x] Test analyze requirements
@@ -42,7 +42,35 @@ This document outlines the development path for the SDD MCP Server project. The 
   - [x] Test create stubs
 - [x] Document costs per operation (~$0.0006 per analysis)
 
-### Day 4: Configuration & Environment
+### Day 4: AI Collaboration Feature (NEW EXCITING PRIORITY!)
+- [ ] Design collaboration architecture (see AI_COLLABORATION_DESIGN.md)
+- [ ] Implement shared project state:
+  - [ ] Create collaboration session manager
+  - [ ] Add task assignment system
+  - [ ] Build synchronization layer
+- [ ] New collaboration tools:
+  - [ ] `seam_collab_init` - Start collaboration session
+  - [ ] `seam_collab_assign` - Assign tasks to AIs
+  - [ ] `seam_collab_sync` - Synchronize state
+  - [ ] `seam_collab_review` - Peer review between AIs
+- [ ] Test with Claude + Gemini working together
+- [ ] Document collaboration workflows
+
+### Day 5: Multi-Provider Support
+- [ ] Create AI provider abstraction interface
+- [ ] Implement Gemini client:
+  - [ ] Match OpenAI interface (complete method)
+  - [ ] Handle Gemini-specific API calls
+  - [ ] Map responses to common format
+- [ ] Update configuration:
+  - [ ] Add AI_PROVIDER env var (openai|gemini)
+  - [ ] Add GEMINI_API_KEY support
+  - [ ] Provider-specific model selection
+- [ ] Test all tools with both providers
+- [ ] Update cost calculations for both
+- [ ] Document in GEMINI_INTEGRATION.md
+
+### Day 5: Configuration & Environment
 - [ ] Create comprehensive .env.example
 - [ ] Add configuration validation on startup
 - [ ] Create config.ts with:
@@ -222,7 +250,7 @@ This document outlines the development path for the SDD MCP Server project. The 
 
 **COMPLETED: v0.1.0 Ready! 🎉**
 - ✅ Build errors fixed
-- ✅ Real AI integration with OpenAI (gpt-4o-mini)
+- ✅ Real AI integration with OpenAI (gpt-4.1-mini-2025-04-1)
 - ✅ Advanced prompting implemented
 - ✅ Documentation updated
 - ✅ GitHub repository prepared

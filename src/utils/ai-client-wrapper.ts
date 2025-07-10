@@ -33,16 +33,19 @@ export async function completeWithCostTracking(params: any) {
     const result = await aiClient.complete(params);
     
     // Calculate actual cost if usage info is available
-    if (result.usage) {
+    if (result.data?.usage) {
       const actualCost = 
-        (result.usage.promptTokens * MODEL_COSTS['gpt-4o-mini-2024-07-18'].input) +
-        (result.usage.completionTokens * MODEL_COSTS['gpt-4o-mini-2024-07-18'].output);
+        (result.data.usage.promptTokens * MODEL_COSTS['gpt-4o-mini-2024-07-18'].input) +
+        (result.data.usage.completionTokens * MODEL_COSTS['gpt-4o-mini-2024-07-18'].output);
       
       // Record the usage
       await costTracker.recordUsage(params.toolName || 'unknown', actualCost);
       
-      // Add cost to result
-      result.cost = actualCost;
+      // Add cost to result metadata
+      if (!result.metadata) {
+        result.metadata = {};
+      }
+      result.metadata.cost = actualCost;
     } else {
       // Record estimated cost if no usage data
       await costTracker.recordUsage(params.toolName || 'unknown', estimatedCost);

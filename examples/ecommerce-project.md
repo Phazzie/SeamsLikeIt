@@ -1,6 +1,6 @@
-# Example: E-commerce Project with SDD
+# Example: E-commerce Project with Seam-Driven Development
 
-This example demonstrates how to use the SDD MCP Server to build an e-commerce platform.
+This example demonstrates how to use the Seam-Driven Development MCP Server to build an e-commerce platform.
 
 ## Step 1: Define Requirements
 
@@ -14,12 +14,12 @@ I need to build an e-commerce platform with the following features:
 - Admin panel for product management
 ```
 
-## Step 2: Run SDD Analysis
+## Step 2: Run Seam-Driven Development Analysis
 
-Using Claude with the SDD MCP Server:
+Using Claude with the Seam-Driven Development MCP Server:
 
 ```
-Use sdd_orchestrate_simple with:
+Use seam_orchestrate_simple with:
 - requirements: "Build an e-commerce platform with product catalog, shopping cart, user authentication, order processing, payment integration, inventory management, and admin panel"
 - domain: "ecommerce"
 - outputPath: "./my-ecommerce-project"
@@ -27,7 +27,7 @@ Use sdd_orchestrate_simple with:
 
 ## Step 3: Generated Architecture
 
-The SDD analysis produces:
+The Seam-Driven Development analysis produces:
 
 ### Components
 1. **Product Catalog Service**
@@ -194,7 +194,7 @@ describe('Add to Cart Integration', () => {
 });
 ```
 
-## Benefits of SDD Approach
+## Benefits of Seam-Driven Development Approach
 
 1. **Clear Architecture** - Components and interactions defined upfront
 2. **Reliable Integration** - Contracts prevent integration issues

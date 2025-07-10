@@ -1,10 +1,10 @@
-# Contract Evolution Guide - The Missing Piece of SDD Refactoring
+# Contract Evolution Guide - The Missing Piece of Seam-Driven Development Refactoring
 
 ## The Contract Paradox
 
 Contracts are supposed to be **immutable** (unchangeable), but business requirements **do** change. How do we resolve this?
 
-## The SDD Contract Evolution Strategy
+## The Seam-Driven Development Contract Evolution Strategy
 
 ### 1. **Contracts are Versioned, Not Mutated**
 
@@ -72,7 +72,7 @@ interface UserService {
 
 ### Step 1: Analyze Impact
 ```typescript
-Use sdd_evolve_contract with:
+Use seam_evolve_contract with:
 - project: <your project>
 - contractId: "user-service-contract"
 - proposedChanges: [
@@ -93,7 +93,7 @@ The tool will analyze:
 After contract evolution, regenerate components:
 ```typescript
 // For each affected component
-Use sdd_regenerate_component with:
+Use seam_regenerate_component with:
 - project: <updated project>
 - componentId: "user-service"
 - reason: "Contract evolved to v2"
@@ -115,7 +115,7 @@ interface PaymentContract {
 
 ### Step 1: Evolve the Contract
 ```typescript
-Use sdd_evolve_contract with:
+Use seam_evolve_contract with:
 - contractId: "payment-contract"
 - proposedChanges: [
     "Add currency parameter to processPayment",
@@ -155,7 +155,7 @@ Use sdd_evolve_contract with:
 ### Step 3: Regenerate Components
 ```typescript
 // Regenerate payment service to support both contract versions
-Use sdd_regenerate_component with:
+Use seam_regenerate_component with:
 - componentId: "payment-service"
 - reason: "Support both v1 and v2 payment contracts"
 - improvements: [
@@ -288,7 +288,7 @@ test('Can migrate from V1 to V2', async () => {
 
 ## Summary
 
-Contract evolution in SDD follows these principles:
+Contract evolution in Seam-Driven Development follows these principles:
 
 1. **Contracts are versioned, not mutated**
 2. **Backward compatibility is paramount**
@@ -299,8 +299,8 @@ Contract evolution in SDD follows these principles:
 Remember: Contracts are promises. When promises must change, we create new promises alongside the old ones, giving everyone time to adjust.
 
 The combination of:
-- `sdd_evolve_contract` (evolve the promise)
-- `sdd_regenerate_component` (regenerate the implementation)
-- `sdd_orchestrate_parallel` (fast execution)
+- `seam_evolve_contract` (evolve the promise)
+- `seam_regenerate_component` (regenerate the implementation)
+- `seam_orchestrate_parallel` (fast execution)
 
-Gives us a complete refactoring toolkit that honors SDD principles while adapting to change.
+Gives us a complete refactoring toolkit that honors Seam-Driven Development principles while adapting to change.

@@ -36,11 +36,11 @@ const authenticate = (req: any, res: any, next: any) => {
 };
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ 
     status: 'healthy', 
     tools: 9,
-    model: process.env.AI_MODEL || 'gpt-4o-mini'
+    model: process.env.AI_MODEL || 'gpt-4.1-mini-2025-04-1'
   });
 });
 
@@ -90,14 +90,12 @@ app.post('/tools/:toolName', authenticate, async (req, res) => {
         const data = JSON.parse(result.content[0].text);
         res.json({ 
           success: true, 
-          data,
-          metadata: result.metadata 
+          data
         });
       } catch {
         res.json({ 
           success: true, 
-          data: result.content[0].text,
-          metadata: result.metadata 
+          data: result.content[0].text
         });
       }
     } else {
@@ -112,7 +110,7 @@ app.post('/tools/:toolName', authenticate, async (req, res) => {
 });
 
 // List available tools
-app.get('/tools', authenticate, (req, res) => {
+app.get('/tools', authenticate, (_req, res) => {
   res.json({
     tools: [
       { name: 'analyze-requirements', description: 'Transform requirements into components and seams' },

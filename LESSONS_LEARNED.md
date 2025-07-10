@@ -179,10 +179,57 @@ Found these patterns consistently reveal hidden seams:
 4. Users consistently struggle with something
 5. A shortcut saves significant time
 
+## Session: Jan 9, 2025 - Rebranding & Documentation
+
+### Key Learnings
+1. **Model Name Accuracy**: Must use exact model names (gpt-4.1-mini-2025-04-1, not gpt-4o-mini)
+2. **Parallel Execution Works**: Successfully ran 3 independent tasks simultaneously
+3. **Documentation Organization**: Consolidating from 16 to 8 files improves clarity
+4. **Multi-Client Support**: MCP servers work with any stdio-compatible client
+5. **UI Decision**: Sometimes enhancing existing HTML is faster than fixing React
+
+### What Worked Well
+- Using Task agents for parallel execution
+- Clear separation of concerns (docs/build/UI)
+- Archiving old documentation instead of deleting
+- Creating integration guides for other clients
+
+### Areas for Improvement
+- Need abstraction layer for multiple AI providers (OpenAI/Gemini)
+- Build process needs cleanup for production use
+- React UI needs completion (60% done)
+- WebSocket integration still pending
+
+## Session: Jan 9, 2025 (Part 2) - AI Collaboration Design
+
+### Major Innovation: Consensus-Based Development
+1. **Steelman Arguments**: AIs argue for EACH OTHER'S plans
+2. **User Choice**: Present all options with coherence/simplicity scores
+3. **Synthesis Warnings**: Detect when merging plans reduces quality
+4. **Task Generation**: Collaborative planning, not just task division
+
+### Key Design Decisions
+1. **Agreement Threshold**: 90% agreement = use highest confidence plan
+2. **Below 90%**: Trigger steelman protocol for deeper analysis
+3. **Coherence > Completeness**: Sometimes 80% coherent > 95% frankenstein
+4. **User Empowerment**: Let users choose based on clear metrics
+
+### Simplicity Scoring Formula
+- Penalize >7 components (-5 points each)
+- Penalize >3 seams/component (-10 points each)
+- Penalize >3 nesting levels (-15 points each)
+- Heavy penalty for circular dependencies (-20 each)
+
+### MCP Clarifications
+1. **MCP SDK doesn't include CLI tools** - it's a library
+2. **HTTP API is easier for testing** than stdio
+3. **MCP is designed for AI-to-server**, not human CLI usage
+4. **Multiple connection options**: stdio, HTTP, WebSocket
+
 ## Session: Jan 8, 2025 - OpenAI Integration & Advanced Prompting
 
 ### OpenAI Integration Insights
-- **Model Selection**: gpt-4o-mini is 20x cheaper than gpt-4 with excellent results
+- **Model Selection**: gpt-4.1-mini-2025-04-1 is 20x cheaper than gpt-4 with excellent results
 - **JSON Mode Gotcha**: Must include "json" in prompt when using `response_format: { type: 'json_object' }`
 - **No Mock Fallback**: Better to fail fast than provide inconsistent mock responses
 - **Cost Tracking**: Essential for user confidence - show cost per operation

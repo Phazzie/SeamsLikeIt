@@ -1,6 +1,6 @@
-# Example: Healthcare Project with SDD
+# Example: Healthcare Project with Seam-Driven Development
 
-This example shows how to build a HIPAA-compliant patient management system using SDD.
+This example shows how to build a HIPAA-compliant patient management system using Seam-Driven Development.
 
 ## Step 1: Requirements
 
@@ -15,10 +15,10 @@ Build a patient management system for a medical clinic:
 - HIPAA-compliant audit trails
 ```
 
-## Step 2: SDD Analysis with Healthcare Domain
+## Step 2: Seam-Driven Development Analysis with Healthcare Domain
 
 ```
-Use sdd_orchestrate_simple with:
+Use seam_orchestrate_simple with:
 - requirements: "Patient management system with registration, appointments, EHR integration, prescriptions, lab results, billing, and HIPAA compliance"
 - domain: "healthcare"
 - outputPath: "./patient-management-system"
@@ -195,7 +195,7 @@ describe('HIPAA Compliance Tests', () => {
 
 ## Step 7: Security Implementation Patterns
 
-The SDD generator includes:
+The Seam-Driven Development generator includes:
 
 1. **Encryption Helpers**
    ```typescript

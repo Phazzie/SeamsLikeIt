@@ -26,7 +26,7 @@ export const createRateLimiter = (config?: Partial<RateLimitConfig>) => {
     message: defaultConfig.message,
     standardHeaders: true,
     legacyHeaders: false,
-    handler: (req, res) => {
+    handler: (_req, _res) => {
       throw new SDDError(
         defaultConfig.message,
         ErrorCodes.RATE_LIMIT_ERROR,

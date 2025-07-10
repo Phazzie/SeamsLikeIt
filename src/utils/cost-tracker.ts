@@ -19,7 +19,7 @@ export class SDDCostTracker implements CostTracker {
     return this.dailySpend.get(today) || 0;
   }
   
-  async recordUsage(toolName: string, cost: number): Promise<void> {
+  async recordUsage(_toolName: string, cost: number): Promise<void> {
     const today = new Date().toISOString().split('T')[0];
     const currentSpend = this.dailySpend.get(today) || 0;
     const newSpend = currentSpend + cost;

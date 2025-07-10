@@ -1,4 +1,4 @@
-# Refactoring Plan - SDD MCP Server
+# Refactoring Plan - Seam-Driven Development MCP Server
 
 ## Code Quality Assessment: 6/10 ⭐
 
@@ -44,7 +44,7 @@ throw new Error('Analysis failed');
 return { success: false, error: error.message };
 
 // Should be: Consistent error handling
-class SDDError extends Error {
+class SeamDrivenDevelopmentError extends Error {
   constructor(
     public code: ErrorCode,
     message: string,

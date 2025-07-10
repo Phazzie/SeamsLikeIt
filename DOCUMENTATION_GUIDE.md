@@ -15,7 +15,7 @@ These are reference documents that change infrequently:
 
 ### In docs/static/:
 - **requirements.md** - Original project requirements
-- **SDD_REFACTORING_GUIDE.md** - Regeneration philosophy reference
+- **SEAM_REFACTORING_GUIDE.md** - Regeneration philosophy reference
 - **CONTRACT_EVOLUTION_GUIDE.md** - Contract versioning reference
 - **SECURITY_AUDIT.md** - Security assessment (review quarterly)
 - **REFACTORING_PLAN.md** - Long-term code improvement plan

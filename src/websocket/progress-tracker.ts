@@ -70,7 +70,9 @@ export class ProgressTracker extends EventEmitter {
     // Clean up old sessions (keep last 100)
     if (this.sessions.size > 100) {
       const oldestSession = this.sessions.keys().next().value;
-      this.sessions.delete(oldestSession);
+      if (oldestSession) {
+        this.sessions.delete(oldestSession);
+      }
     }
   }
   

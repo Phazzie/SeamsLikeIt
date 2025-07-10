@@ -10,7 +10,7 @@
 ### 🎯 Current Status
 - ✅ **Build**: Working perfectly
 - ✅ **Tools**: 9 powerful SDD tools implemented
-- ✅ **AI**: Real OpenAI integration (gpt-4o-mini)
+- ✅ **AI**: Real OpenAI integration (gpt-4.1-mini-2025-04-1)
 - ✅ **HTTP Server**: Running on port 3000
 - ✅ **GitHub**: Pushed to https://github.com/Phazzie/SeamsLikeIt
 - 🔥 **NEW**: Regeneration tools + Contract evolution + Parallel processing
@@ -48,7 +48,7 @@ curl http://localhost:3000/health
 ```
 
 ### 💰 Cost Information
-- Model: **gpt-4o-mini-2024-07-18**
+- Model: **gpt-4.1-mini-2025-04-1**
 - Cost per analysis: ~$0.0006
 - Full workflow: ~$0.0025
 - 30x cheaper than GPT-4 with excellent results

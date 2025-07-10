@@ -8,7 +8,7 @@
 import { SDDProject } from '../types/sdd.js';
 import { aiClient } from '../utils/ai-client.js';
 import { getAnalysisPrompt } from '../prompts/analyze-requirements.js';
-import { AnalyzeRequirementsSchema, SDDError, ErrorCodes } from '../contracts/index.js';
+import { AnalyzeRequirementsSchema } from '../contracts/index.js';
 
 export async function analyzeRequirementsTool(args: any) {
   try {
@@ -26,15 +26,10 @@ export async function analyzeRequirementsTool(args: any) {
       };
     }
     
-    const { requirements, domain, analysisDepth } = parseResult.data;
+    const { requirements, domain } = parseResult.data;
 
     // Build the analysis prompt with domain context and depth
     const prompt = getAnalysisPrompt(requirements, domain);
-    const depthInstructions = analysisDepth === 'comprehensive' 
-      ? '\n\nProvide COMPREHENSIVE analysis with detailed edge cases, error handling, and performance considerations.'
-      : analysisDepth === 'basic'
-      ? '\n\nProvide BASIC analysis focusing on core functionality only.'
-      : '';
     
     // Add the requirements to analyze
     const fullPrompt = `${prompt}\n\nREQUIREMENTS TO ANALYZE:\n${requirements}\n\nGenerate the SDD project structure:`;

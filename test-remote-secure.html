@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDD MCP Server - Secure Remote Test</title>
+    <title>Seam-Driven Development MCP Server - Secure Remote Test</title>
     <style>
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -92,19 +92,43 @@
             height: 20px;
             border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top-color: #0066ff;
+            border-top-color: #00b4d8;
             animation: spin 1s ease-in-out infinite;
         }
         
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        
+        h2 {
+            color: #f0f0f0;
+            margin-top: 30px;
+        }
+        
+        .logo {
+            display: inline-block;
+            margin-right: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .brand-subtitle {
+            font-style: italic;
+            color: #00b4d8;
+            font-size: 0.9rem;
+            margin-top: -5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🚀 SDD MCP Server - Secure Test Interface</h1>
-        <p>Seam-Driven Development Tools - XSS Protected Version</p>
+        <h1><span class="logo">🧵</span>SeamsLikeIt - MCP Server Test Interface</h1>
+        <p style="font-size: 1.1rem; color: #90e0ef;">Transform your ideas into seamless architecture with AI-powered design</p>
+        <p class="brand-subtitle">"It seams like it's working perfectly!"</p>
         
         <div class="auth-section">
             <h3>🔐 Authentication</h3>
@@ -122,7 +146,7 @@ Create a simple user authentication system with:
 - Password hashing
 - Basic user profile management</textarea>
         
-        <label for="domain">Domain:</label>
+        <label for="domain" style="color: #90e0ef; font-weight: 600;">Domain:</label>
         <select id="domain">
             <option value="">General</option>
             <option value="healthcare">Healthcare</option>
@@ -132,16 +156,16 @@ Create a simple user authentication system with:
         
         <h2>🛠️ Available Tools</h2>
         <div class="tool-grid">
-            <button onclick="callTool('sdd_analyze_requirements')" class="tool-button">
+            <button onclick="callTool('seam_analyze_requirements')" class="tool-button">
                 📊 Analyze Requirements
             </button>
-            <button onclick="callTool('sdd_orchestrate_simple')" class="tool-button">
+            <button onclick="callTool('seam_orchestrate_simple')" class="tool-button">
                 🎯 Simple Orchestration
             </button>
-            <button onclick="callTool('sdd_orchestrate_parallel')" class="tool-button">
+            <button onclick="callTool('seam_orchestrate_parallel')" class="tool-button">
                 ⚡ Parallel Orchestration
             </button>
-            <button onclick="callTool('sdd_analyze_for_regeneration')" class="tool-button">
+            <button onclick="callTool('seam_analyze_for_regeneration')" class="tool-button">
                 🔍 Analyze for Regeneration
             </button>
         </div>
@@ -183,7 +207,7 @@ Create a simple user authentication system with:
             try {
                 let args = {};
                 
-                if (toolName === 'sdd_analyze_requirements') {
+                if (toolName === 'seam_analyze_requirements') {
                     args = { requirements, domain: domain || undefined };
                 } else if (toolName.includes('orchestrate')) {
                     args = { 
@@ -191,7 +215,7 @@ Create a simple user authentication system with:
                         domain: domain || undefined,
                         parallel: toolName.includes('parallel')
                     };
-                } else if (toolName === 'sdd_analyze_for_regeneration' && currentProject) {
+                } else if (toolName === 'seam_analyze_for_regeneration' && currentProject) {
                     args = { projectData: currentProject };
                 }
                 
@@ -277,14 +301,24 @@ Create a simple user authentication system with:
         }
         
         // Auto-load API key from localStorage (but don't display it)
-        const savedApiKey = localStorage.getItem('sdd_api_key');
+        const savedApiKey = localStorage.getItem('seam_api_key');
         if (savedApiKey) {
             document.getElementById('apiKey').value = savedApiKey;
         }
         
         // Save API key when it changes (encrypted would be better)
         document.getElementById('apiKey').addEventListener('change', (e) => {
-            localStorage.setItem('sdd_api_key', e.target.value);
+            localStorage.setItem('seam_api_key', e.target.value);
+        });
+        
+        // Add some visual feedback when hovering over tool buttons
+        document.querySelectorAll('.tool-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
         });
     </script>
 </body>

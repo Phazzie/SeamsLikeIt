@@ -1,9 +1,9 @@
-# SDD Refactoring Guide: Regeneration Over Debugging
+# Seam-Driven Refactoring Guide: Regeneration Over Debugging
 
 ## The Revolutionary Approach
 
 Traditional refactoring says: "Improve the code gradually."
-SDD says: **"Throw it away and regenerate from contracts."**
+Seam-Driven Development says: **"Throw it away and regenerate from contracts."**
 
 ## Core Philosophy
 

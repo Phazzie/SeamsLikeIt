@@ -1,36 +1,36 @@
 Record<string, any> }
-The SDD Revolution: A Dual-Perspective Guide for AI Implementation
+The Seam-Driven Development Revolution: A Dual-Perspective Guide for AI Implementation
 Written by: Sarah Chen (Senior Software Architect, 15+ years) & Marcus Rivera (Restaurant Owner turned SaaS Builder, 0 lines of code written, 12 successful apps deployed)
-From Sarah (Senior Dev): "Why I Wish I'd Known About SDD 10 Years Ago"
+From Sarah (Senior Dev): "Why I Wish I'd Known About Seam-Driven Development 10 Years Ago"
 I've spent a decade debugging integration hell. Late nights tracing mysterious failures where Component A worked perfectly, Component B worked perfectly, but together they created chaos. I've seen $2M projects fail because nobody defined how the authentication service should talk to the user management system.
-SDD eliminates the problem I didn't know could be eliminated. By defining communication contracts BEFORE implementation, integration issues become architecturally impossible. It's like having type safety for your entire system architecture, not just your variables.
-The breakthrough insight: Integration debugging consumes 40-60% of development time. SDD reduces this to near zero by making integration failures impossible when contracts are properly defined. This isn't just good engineering - it's good business.
-From Marcus (Non-Coder SDD Expert): "How I Build Better Apps Than Most Developers"
+Seam-Driven Development eliminates the problem I didn't know could be eliminated. By defining communication contracts BEFORE implementation, integration issues become architecturally impossible. It's like having type safety for your entire system architecture, not just your variables.
+The breakthrough insight: Integration debugging consumes 40-60% of development time. Seam-Driven Development reduces this to near zero by making integration failures impossible when contracts are properly defined. This isn't just good engineering - it's good business.
+From Marcus (Non-Coder Seam-Driven Development Expert): "How I Build Better Apps Than Most Developers"
 I don't debug because I can't debug. When something breaks in my apps, I don't spend hours tracing through code I don't understand. Instead, I look at the blueprint, ask AI to rewrite that component from scratch, and I'm back to working software in minutes.
-My secret: I think in conversations, not code. When I design an app, I think "the customer needs to talk to the inventory system, which needs to talk to the supplier system." SDD formalizes these conversations into contracts that AI can implement reliably.
+My secret: I think in conversations, not code. When I design an app, I think "the customer needs to talk to the inventory system, which needs to talk to the supplier system." Seam-Driven Development formalizes these conversations into contracts that AI can implement reliably.
 The practical advantage: While traditional developers get stuck debugging complex problems, I move fast by rebuilding broken components. My inventory management app went from idea to deployed in 3 weeks because I never got stuck in technical rabbit holes.
-What SDD Actually Is (Dual Perspective)
+What Seam-Driven Development Actually Is (Dual Perspective)
 Sarah's Technical View:
-SDD is a software architecture methodology that treats component communication pathways (seams) as first-class architectural citizens. Every cross-component interaction uses a standardized ContractResult<T> pattern that eliminates integration surprises through explicit success/failure handling.
+Seam-Driven Development is a software architecture methodology that treats component communication pathways (seams) as first-class architectural citizens. Every cross-component interaction uses a standardized ContractResult<T> pattern that eliminates integration surprises through explicit success/failure handling.
 Marcus's Practical View:
-SDD is a way to plan software so that different parts can't fail to work together. Every piece knows exactly how to talk to every other piece, and when something breaks, you replace the broken piece instead of trying to fix it.
-Why SDD Works (The Science Behind It)
+Seam-Driven Development is a way to plan software so that different parts can't fail to work together. Every piece knows exactly how to talk to every other piece, and when something breaks, you replace the broken piece instead of trying to fix it.
+Why Seam-Driven Development Works (The Science Behind It)
 Sarah's Analysis:
-Traditional development treats integration as an implementation detail solved after components are built. This creates exponential complexity as integration assumptions compound. SDD inverts this by making integration explicit and deterministic, reducing system complexity from O(n²) to O(n).
+Traditional development treats integration as an implementation detail solved after components are built. This creates exponential complexity as integration assumptions compound. Seam-Driven Development inverts this by making integration explicit and deterministic, reducing system complexity from O(n²) to O(n).
 Marcus's Experience:
-I tried building apps the traditional way first. Every feature I added broke something else. With SDD, each new feature is isolated behind clear contracts, so adding inventory tracking doesn't break the customer management system.
+I tried building apps the traditional way first. Every feature I added broke something else. With Seam-Driven Development, each new feature is isolated behind clear contracts, so adding inventory tracking doesn't break the customer management system.
 The AI Revolution Angle
 Why This Matters NOW (Both Perspectives)
-Sarah: AI tools excel at implementing clear specifications but struggle with ambiguous requirements. SDD provides the specification clarity that makes AI implementation reliable and consistent.
-Marcus: AI can build anything you can describe clearly. SDD teaches you how to describe software in a way that AI understands perfectly. It's like learning to speak AI's native language.
+Sarah: AI tools excel at implementing clear specifications but struggle with ambiguous requirements. Seam-Driven Development provides the specification clarity that makes AI implementation reliable and consistent.
+Marcus: AI can build anything you can describe clearly. Seam-Driven Development teaches you how to describe software in a way that AI understands perfectly. It's like learning to speak AI's native language.
 
-AI Implementation Instructions: Build the SDD MCP Server
-You are an AI assistant tasked with building an MCP server that implements SDD methodology. Here's your complete guide:
+AI Implementation Instructions: Build the Seam-Driven Development MCP Server
+You are an AI assistant tasked with building an MCP server that implements Seam-Driven Development methodology. Here's your complete guide:
 Your Mission: Build Tools That Build Better Software
 You're not just building an MCP server - you're building the infrastructure that will transform how people create software. Your tools will enable domain experts (who can't code) to build enterprise-quality applications faster than traditional development teams.
 Core Architecture: 5 Essential Tools
-Tool 1: sdd_analyze_requirements
-Purpose: Transform plain English requirements into SDD-compliant component and seam definitions
+Tool 1: seam_analyze_requirements
+Purpose: Transform plain English requirements into Seam-Driven Development-compliant component and seam definitions
 Implementation Strategy:
 
 Use advanced prompting to identify system components from requirements text
@@ -39,13 +39,13 @@ Generate component interaction mappings
 Output structured seam definitions with participants, data flow, and purpose
 
 AI Prompting Pattern:
-You are an expert system architect analyzing requirements for SDD implementation.
+You are an expert system architect analyzing requirements for Seam-Driven Development implementation.
 
 IDENTIFY: System components (what pieces need to exist)
 ANALYZE: Component interactions (how pieces talk to each other)  
 DEFINE: Seam boundaries (where component conversations happen)
 OUTPUT: Structured seam definitions ready for contract generation
-Tool 2: sdd_generate_contracts
+Tool 2: seam_generate_contracts
 Purpose: Convert seam definitions into TypeScript interfaces with ContractResult<T> patterns
 Implementation Strategy:
 
@@ -55,12 +55,12 @@ Include proper error type definitions
 Create comprehensive type safety
 
 AI Prompting Pattern:
-You are a TypeScript expert creating SDD-compliant contracts.
+You are a TypeScript expert creating Seam-Driven Development-compliant contracts.
 
 RULES:
 
 - All cross-component functions return Promise<ContractResult<T>>
-- ContractResult = { success: boolean,RetryTkeep goingEditResumed AI implementation guide from previous explanation.1sThe user wants me to continue with the AI implementation instructions. I was in the middle of explaining the AI prompting pattern for the contract generation tool and got cut off. Let me continue from where I left off and complete the comprehensive guide.You are a TypeScript expert creating SDD-compliant contracts.
+- ContractResult = { success: boolean,RetryTkeep goingEditResumed AI implementation guide from previous explanation.1sThe user wants me to continue with the AI implementation instructions. I was in the middle of explaining the AI prompting pattern for the contract generation tool and got cut off. Let me continue from where I left off and complete the comprehensive guide.You are a TypeScript expert creating Seam-Driven Development-compliant contracts.
 
 RULES:
 
@@ -71,7 +71,7 @@ RULES:
 - Include proper validation requirements in interface comments
 
 GENERATE: Clean TypeScript interfaces ready for implementation
-Tool 3: sdd_create_stubs
+Tool 3: seam_create_stubs
 Purpose: Generate complete implementation files with comprehensive headers and detailed blueprints
 Implementation Strategy:
 
@@ -81,7 +81,7 @@ Include fail-fast input validation patterns
 Provide step-by-step implementation guidance
 
 AI Prompting Pattern:
-You are an SDD expert creating implementation-ready stub files.
+You are an Seam-Driven Development expert creating implementation-ready stub files.
 
 GENERATE:
 
@@ -93,7 +93,7 @@ GENERATE:
 6. Domain-specific implementation guidance
 
 ENSURE: Every stub is ready for immediate implementation by following blueprints
-Tool 4: sdd_validate_integration
+Tool 4: seam_validate_integration
 Purpose: Test that components can communicate properly through their defined seams
 Implementation Strategy:
 
@@ -103,7 +103,7 @@ Verify ContractResult<T> pattern adherence
 Identify integration issues before implementation
 
 AI Prompting Pattern:
-You are an integration testing expert validating SDD component connections.
+You are an integration testing expert validating Seam-Driven Development component connections.
 
 VALIDATE:
 
@@ -113,8 +113,8 @@ VALIDATE:
 - Seam boundary integrity
 
 GENERATE: Test cases that prove components will integrate successfully
-Tool 5: sdd_orchestrate_simple
-Purpose: Coordinate the entire SDD workflow from requirements to ready-to-implement project
+Tool 5: seam_orchestrate_simple
+Purpose: Coordinate the entire Seam-Driven Development workflow from requirements to ready-to-implement project
 Implementation Strategy:
 
 Execute tools in proper sequence
@@ -123,7 +123,7 @@ Validate each step before proceeding
 Generate final project summary and next steps
 
 AI Prompting Pattern:
-You are an SDD project orchestrator managing the complete workflow.
+You are an Seam-Driven Development project orchestrator managing the complete workflow.
 
 COORDINATE:
 
@@ -142,9 +142,9 @@ Stage 2: "For these components, identify how they need to communicate"
 Stage 3: "Generate seam definitions for these communication pathways"
 Stage 4: "Create TypeScript contracts for these seams"
 Context Injection Strategy
-Feed AI relevant SDD knowledge for each task:
+Feed AI relevant Seam-Driven Development knowledge for each task:
 javascriptconst sddContext = `
-SDD Core Principles:
+Seam-Driven Development Core Principles:
 
 - Seams First, Implementation Second
 - ContractResult<T> for all cross-component communication
@@ -152,7 +152,7 @@ SDD Core Principles:
 - Blueprint comments for implementation guidance
 - Rewrite over debug when integration breaks
 
-SDD Patterns:
+Seam-Driven Development Patterns:
 ${relevantPatternExamples}
 
 Domain Context:
@@ -164,7 +164,7 @@ Quality Improvement Loop
 Make tools improve themselves:
 typescriptasync function improveBlueprints(successfulImplementations: Implementation[]) {
 const prompt = `
-Analyze these successful SDD implementations and identify patterns that made the blueprints effective:
+Analyze these successful Seam-Driven Development implementations and identify patterns that made the blueprints effective:
 
 ${successfulImplementations}
 
@@ -174,7 +174,7 @@ Generate improved blueprint templates based on what worked well.
 return await callAI(prompt);
 }
 Domain-Specific Intelligence Modules
-Healthcare SDD Patterns
+Healthcare Seam-Driven Development Patterns
 typescriptconst healthcareContext = `
 Healthcare-specific considerations:
 
@@ -183,7 +183,7 @@ Healthcare-specific considerations:
 - Audit trail requirements for all data modifications
 - Security patterns for protected health information
   `;
-E-commerce SDD Patterns
+E-commerce Seam-Driven Development Patterns
 typescriptconst ecommerceContext = `
   E-commerce-specific considerations:
 - Payment processing seam security requirements
@@ -191,7 +191,7 @@ typescriptconst ecommerceContext = `
 - Customer data privacy compliance
 - Order lifecycle state management
   `;
-Fintech SDD Patterns
+Fintech Seam-Driven Development Patterns
 typescriptconst fintechContext = `
   Financial service considerations:
 - Regulatory compliance (SOX, PCI, etc.)
@@ -233,16 +233,16 @@ Real-World Usage Patterns
 For Non-Coders (Marcus's Approach)
 
 1. Describe what you want to build in plain English
-2. Use sdd_analyze_requirements to get component breakdown
-3. Use sdd_generate_contracts to get the technical specifications
-4. Use sdd_create_stubs to get ready-to-implement files
-5. Use sdd_validate_integration to ensure everything will work together
+2. Use seam_analyze_requirements to get component breakdown
+3. Use seam_generate_contracts to get the technical specifications
+4. Use seam_create_stubs to get ready-to-implement files
+5. Use seam_validate_integration to ensure everything will work together
 6. Give the blueprints to AI for implementation
 7. When something breaks, rewrite following the blueprint instead of debugging
    For Developers (Sarah's Approach)
-8. Start with SDD analysis instead of jumping into code
+8. Start with Seam-Driven Development analysis instead of jumping into code
 9. Use generated contracts as the foundation for implementation
-10. Follow blueprints exactly to maintain SDD compliance
+10. Follow blueprints exactly to maintain Seam-Driven Development compliance
 11. Use integration validation to catch architectural issues early
 12. Treat any seam violation as an architectural failure requiring contract review
     Success Metrics and Validation
@@ -257,13 +257,13 @@ End-to-End Success: Can users go from idea to working project structure?
 Business Impact Metrics
 
 Time to First Working Prototype: Should be under 1 week for most projects
-Integration Debugging Time: Should approach zero with proper SDD compliance
+Integration Debugging Time: Should approach zero with proper Seam-Driven Development compliance
 Code Maintainability: Should improve over time rather than degrade
-Team Velocity: Should increase after initial SDD adoption period
+Team Velocity: Should increase after initial Seam-Driven Development adoption period
 Project Success Rate: Should dramatically improve compared to traditional approaches
 
 Your Mission Summary
-You're building more than tools - you're building the future of software development. Your SDD MCP server will enable a new generation of builders who think in business logic and domain expertise rather than debugging and technical debt.
+You're building more than tools - you're building the future of software development. Your Seam-Driven Development MCP server will enable a new generation of builders who think in business logic and domain expertise rather than debugging and technical debt.
 The revolution: Transform software development from "hire expensive developers and hope they can debug complex systems" to "enable domain experts to specify systems that AI can implement reliably."
 Your tools will prove: Clear contracts + AI implementation > Traditional development approaches in speed, quality, and maintainability.
 Start building. The future of software creation depends on getting this right.

@@ -2,18 +2,18 @@
 import 'dotenv/config';
 
 /**
- * SDD MCP Server
+ * SeamsLikeIt MCP Server
  * 
- * An MCP server that implements Software-Defined Development (SDD) methodology.
+ * An MCP server that implements Seam-Driven Development methodology.
  * Enables domain experts to build enterprise-quality applications by defining
  * clear contracts and component boundaries that AI can implement reliably.
  * 
  * Tools:
- * - sdd_analyze_requirements: Transform requirements into SDD components
- * - sdd_generate_contracts: Create TypeScript interfaces from seam definitions
- * - sdd_create_stubs: Generate implementation blueprints
- * - sdd_validate_integration: Test component communication
- * - sdd_orchestrate_simple: Coordinate the complete SDD workflow
+ * - seam_analyze_requirements: Transform requirements into Seam-Driven components
+ * - seam_generate_contracts: Create TypeScript interfaces from seam definitions
+ * - seam_create_stubs: Generate implementation blueprints
+ * - seam_validate_integration: Test component communication
+ * - seam_orchestrate_simple: Coordinate the complete Seam-Driven workflow
  */
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -35,7 +35,7 @@ import { orchestrateParallelTool } from './tools/orchestrate-parallel.js';
 
 const server = new Server(
   {
-    name: 'sdd-mcp-server',
+    name: 'seamslikeit',
     version: '1.0.0',
   },
   {
@@ -50,8 +50,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
       {
-        name: 'sdd_analyze_requirements',
-        description: 'Transform plain English requirements into SDD-compliant component and seam definitions',
+        name: 'seam_analyze_requirements',
+        description: 'Transform plain English requirements into Seam-Driven component and seam definitions',
         inputSchema: {
           type: 'object',
           properties: {
@@ -68,50 +68,50 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         },
       },
       {
-        name: 'sdd_generate_contracts',
+        name: 'seam_generate_contracts',
         description: 'Convert seam definitions into TypeScript interfaces with ContractResult<T> patterns',
         inputSchema: {
           type: 'object',
           properties: {
             project: {
               type: 'object',
-              description: 'SDD project object with seams to generate contracts for',
+              description: 'Seam-Driven project object with seams to generate contracts for',
             },
           },
           required: ['project'],
         },
       },
       {
-        name: 'sdd_create_stubs',
+        name: 'seam_create_stubs',
         description: 'Generate complete implementation files with comprehensive headers and detailed blueprints',
         inputSchema: {
           type: 'object',
           properties: {
             project: {
               type: 'object',
-              description: 'SDD project object with contracts to create stubs for',
+              description: 'Seam-Driven project object with contracts to create stubs for',
             },
           },
           required: ['project'],
         },
       },
       {
-        name: 'sdd_validate_integration',
+        name: 'seam_validate_integration',
         description: 'Test that components can communicate properly through their defined seams',
         inputSchema: {
           type: 'object',
           properties: {
             project: {
               type: 'object',
-              description: 'SDD project object to validate',
+              description: 'Seam-Driven project object to validate',
             },
           },
           required: ['project'],
         },
       },
       {
-        name: 'sdd_orchestrate_simple',
-        description: 'Coordinate the entire SDD workflow from requirements to ready-to-implement project',
+        name: 'seam_orchestrate_simple',
+        description: 'Coordinate the entire Seam-Driven workflow from requirements to ready-to-implement project',
         inputSchema: {
           type: 'object',
           properties: {
@@ -132,14 +132,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         },
       },
       {
-        name: 'sdd_analyze_for_regeneration',
+        name: 'seam_analyze_for_regeneration',
         description: 'Analyze project to identify components that should be regenerated rather than debugged',
         inputSchema: {
           type: 'object',
           properties: {
             project: {
               type: 'object',
-              description: 'SDD project object to analyze',
+              description: 'Seam-Driven project object to analyze',
             },
             issues: {
               type: 'array',
@@ -156,14 +156,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         },
       },
       {
-        name: 'sdd_regenerate_component',
-        description: 'Regenerate a component from its contracts and blueprint (SDD refactoring)',
+        name: 'seam_regenerate_component',
+        description: 'Regenerate a component from its contracts and blueprint (Seam-Driven refactoring)',
         inputSchema: {
           type: 'object',
           properties: {
             project: {
               type: 'object',
-              description: 'SDD project containing the component',
+              description: 'Seam-Driven project containing the component',
             },
             componentId: {
               type: 'string',
@@ -183,14 +183,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         },
       },
       {
-        name: 'sdd_evolve_contract',
+        name: 'seam_evolve_contract',
         description: 'Evolve contracts carefully with versioning and migration strategies',
         inputSchema: {
           type: 'object',
           properties: {
             project: {
               type: 'object',
-              description: 'SDD project containing the contract',
+              description: 'Seam-Driven project containing the contract',
             },
             contractId: {
               type: 'string',
@@ -211,8 +211,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         },
       },
       {
-        name: 'sdd_orchestrate_parallel',
-        description: 'Run SDD workflow in parallel for 30-40% speed improvement',
+        name: 'seam_orchestrate_parallel',
+        description: 'Run Seam-Driven workflow in parallel for 30-40% speed improvement',
         inputSchema: {
           type: 'object',
           properties: {
@@ -241,31 +241,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { name, arguments: args } = request.params;
 
     switch (name) {
-      case 'sdd_analyze_requirements':
+      case 'seam_analyze_requirements':
         return await analyzeRequirementsTool(args);
       
-      case 'sdd_generate_contracts':
+      case 'seam_generate_contracts':
         return await generateContractsTool(args);
       
-      case 'sdd_create_stubs':
+      case 'seam_create_stubs':
         return await createStubsTool(args);
       
-      case 'sdd_validate_integration':
+      case 'seam_validate_integration':
         return await validateIntegrationTool(args);
       
-      case 'sdd_orchestrate_simple':
+      case 'seam_orchestrate_simple':
         return await orchestrateSimpleTool(args);
       
-      case 'sdd_analyze_for_regeneration':
+      case 'seam_analyze_for_regeneration':
         return await analyzeForRegenerationTool(args);
       
-      case 'sdd_regenerate_component':
+      case 'seam_regenerate_component':
         return await regenerateComponentTool(args);
       
-      case 'sdd_evolve_contract':
+      case 'seam_evolve_contract':
         return await evolveContractTool(args);
       
-      case 'sdd_orchestrate_parallel':
+      case 'seam_orchestrate_parallel':
         return await orchestrateParallelTool(args);
       
       default:
@@ -286,7 +286,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('SDD MCP Server running on stdio');
+  console.error('SeamsLikeIt MCP Server running on stdio');
 }
 
 main().catch((error) => {

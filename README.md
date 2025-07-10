@@ -1,12 +1,12 @@
-# SDD MCP Server
+# SeamsLikeIt
 
-An MCP (Model Context Protocol) server that implements Seam-Driven Development (SDD) methodology, enabling domain experts to build enterprise-quality applications through AI-assisted development.
+An MCP (Model Context Protocol) server that implements Seam-Driven Development methodology, enabling domain experts to build enterprise-quality applications through AI-assisted development.
 
 🚀 **Transform plain English requirements into working software architecture in minutes!**
 
-## What is SDD?
+## What is Seam-Driven Development?
 
-Software-Defined Development treats component communication pathways (seams) as first-class architectural citizens. By defining clear contracts before implementation, SDD eliminates integration issues and enables reliable AI-assisted development.
+Seam-Driven Development treats component communication pathways (seams) as first-class architectural citizens. By defining clear contracts before implementation, Seam-Driven Development eliminates integration issues and enables reliable AI-assisted development.
 
 ### Key Principles
 
@@ -18,14 +18,21 @@ Software-Defined Development treats component communication pathways (seams) as 
 ## Prerequisites
 
 - Node.js 18+ 
-- OpenAI API key (uses gpt-4o-mini model)
+- OpenAI API key (uses gpt-4.1-mini-2025-04-1 model)
 - Claude Desktop or Claude CLI
+
+## Multi-Client Support
+
+SeamsLikeIt works with any MCP-compatible client:
+- **Claude Desktop** - See configuration below
+- **Gemini CLI** - See [GEMINI_INTEGRATION.md](./GEMINI_INTEGRATION.md)
+- **Any stdio-based MCP client** - Use the same configuration
 
 ## Installation
 
 ### From npm (coming soon)
 ```bash
-npm install -g sdd-mcp-server
+npm install -g seamslikeit
 ```
 
 ### From source
@@ -42,7 +49,7 @@ Create a `.env` file in the project root:
 
 ```env
 OPENAI_API_KEY=your-openai-api-key
-AI_MODEL=gpt-4o-mini-2024-07-18
+AI_MODEL=gpt-4.1-mini-2025-04-1
 ```
 
 ## Usage
@@ -54,8 +61,8 @@ Add to your Claude Desktop configuration:
 ```json
 {
   "mcpServers": {
-    "sdd": {
-      "command": "sdd-mcp-server"
+    "seamslikeit": {
+      "command": "seamslikeit"
     }
   }
 }
@@ -63,67 +70,67 @@ Add to your Claude Desktop configuration:
 
 ### Available Tools
 
-#### 1. `sdd_analyze_requirements`
-Transform plain English requirements into SDD-compliant component and seam definitions.
+#### 1. `seam_analyze_requirements`
+Transform plain English requirements into Seam-Driven component and seam definitions.
 
 ```typescript
 // Example usage in Claude:
-Use sdd_analyze_requirements with:
+Use seam_analyze_requirements with:
 - requirements: "Build an online bookstore with inventory management"
 - domain: "ecommerce"
 ```
 
-#### 2. `sdd_generate_contracts`
+#### 2. `seam_generate_contracts`
 Convert seam definitions into TypeScript interfaces with ContractResult patterns.
 
 ```typescript
 // Takes the project output from analyze_requirements
-Use sdd_generate_contracts with the project object
+Use seam_generate_contracts with the project object
 ```
 
-#### 3. `sdd_create_stubs`
+#### 3. `seam_create_stubs`
 Generate implementation files with detailed blueprints for AI or developers to follow.
 
 ```typescript
 // Takes the project with contracts
-Use sdd_create_stubs with the project object
+Use seam_create_stubs with the project object
 ```
 
-#### 4. `sdd_validate_integration`
+#### 4. `seam_validate_integration`
 Test that components can communicate properly through their defined seams.
 
 ```typescript
 // Validates the complete project
-Use sdd_validate_integration with the project object
+Use seam_validate_integration with the project object
 ```
 
-#### 5. `sdd_orchestrate_simple`
-Run the complete SDD workflow from requirements to ready-to-implement project.
+#### 5. `seam_orchestrate_simple`
+Run the complete Seam-Driven Development workflow from requirements to ready-to-implement project.
 
 ```typescript
 // One-step project generation
-Use sdd_orchestrate_simple with:
+Use seam_orchestrate_simple with:
 - requirements: "Your project description"
 - domain: "healthcare|ecommerce|fintech" (optional)
 - outputPath: "/path/to/save/project" (optional)
 ```
 
-#### 6. `sdd_analyze_for_regeneration` 🆕
-Identify components that should be regenerated rather than debugged (SDD refactoring).
+#### 6. `seam_analyze_for_regeneration` 🆕
+Identify components that should be regenerated rather than debugged (Seam-Driven refactoring).
 
 ```typescript
-Use sdd_analyze_for_regeneration with:
-- project: <your SDD project>
+Use seam_analyze_for_regeneration with:
+- project: <your Seam-Driven project>
 - issues: ["Integration failing", "Performance degraded"]
 - codeSmells: ["Complex callbacks", "Unclear errors"]
 ```
 
-#### 7. `sdd_regenerate_component` 🆕
-Regenerate a component from its contracts - the SDD way to refactor!
+#### 7. `seam_regenerate_component` 🆕
+Regenerate a component from its contracts - the Seam-Driven way to refactor!
 
 ```typescript
-Use sdd_regenerate_component with:
-- project: <your SDD project>
+Use seam_regenerate_component with:
+- project: <your Seam-Driven project>
 - componentId: "user-service"
 - reason: "Complex integration issues"
 - improvements: ["Add retry logic", "Simplify error handling"]
@@ -238,7 +245,7 @@ src/
 
 ## Cost Information
 
-Using OpenAI's gpt-4o-mini model, typical costs per operation:
+Using OpenAI's gpt-4.1-mini-2025-04-1 model, typical costs per operation:
 - Analyze Requirements: ~$0.0006
 - Generate Contracts: ~$0.0005
 - Create Stubs: ~$0.0008
@@ -251,7 +258,7 @@ Using OpenAI's gpt-4o-mini model, typical costs per operation:
 - 🛡️ **Type Safety**: Full TypeScript with ContractResult pattern
 - 📊 **Cost Tracking**: Monitor AI usage costs per operation
 - 🔄 **Regeneration Philosophy**: Broken? Regenerate from blueprint instead of debugging
-- 🚀 **SDD Refactoring**: Analyze and regenerate components instead of traditional debugging
+- 🚀 **Seam-Driven Refactoring**: Analyze and regenerate components instead of traditional debugging
 - 🧠 **Advanced AI Prompting**: Reasoning traces, self-validation, mental models
 
 ## Contributing

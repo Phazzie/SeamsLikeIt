@@ -1,9 +1,9 @@
-# SDD Refactoring Guide: Regeneration Over Debugging
+# Seam-Driven Development Refactoring Guide: Regeneration Over Debugging
 
 ## The Revolutionary Approach
 
 Traditional refactoring says: "Improve the code gradually."
-SDD says: **"Throw it away and regenerate from contracts."**
+Seam-Driven Development says: **"Throw it away and regenerate from contracts."**
 
 ## Core Philosophy
 
@@ -30,13 +30,13 @@ This isn't laziness - it's **efficiency**. Why spend hours debugging integration
 - 🟢 Configuration issue
 - 🟢 External service integration problem
 
-## The SDD Refactoring Process
+## The Seam-Driven Development Refactoring Process
 
 ### 1. Analyze for Regeneration
 ```typescript
 // Use the new tool to identify what needs regeneration
-Use sdd_analyze_for_regeneration with:
-- project: <your SDD project>
+Use seam_analyze_for_regeneration with:
+- project: <your Seam-Driven Development project>
 - issues: ["User reports slow performance", "Integration failing randomly"]
 - codeSmells: ["Complex nested callbacks", "Unclear error handling"]
 ```
@@ -50,8 +50,8 @@ Before regenerating, ensure contracts are still correct:
 ### 3. Regenerate Component
 ```typescript
 // Regenerate with specific improvements
-Use sdd_regenerate_component with:
-- project: <your SDD project>
+Use seam_regenerate_component with:
+- project: <your Seam-Driven Development project>
 - componentId: "user-service"
 - reason: "Integration complexity causing random failures"
 - improvements: [
@@ -70,7 +70,7 @@ The regenerated component will:
 
 ## Real Example: Refactoring Our Own Server
 
-Let's use SDD to refactor the SDD MCP Server itself:
+Let's use Seam-Driven Development to refactor the Seam-Driven Development MCP Server itself:
 
 ### Step 1: Analyze Current Issues
 ```javascript
@@ -164,30 +164,30 @@ return handlers.handle(request);
 ### Scenario 1: Performance Issues
 **Symptom**: API responses getting slower over time
 **Traditional**: Profile, optimize, cache, repeat
-**SDD**: Regenerate with performance requirements in contract
+**Seam-Driven Development**: Regenerate with performance requirements in contract
 
 ### Scenario 2: Security Vulnerability
 **Symptom**: Component allows SQL injection
 **Traditional**: Patch each input, hope you got them all
-**SDD**: Regenerate with security-first implementation
+**Seam-Driven Development**: Regenerate with security-first implementation
 
 ### Scenario 3: New Requirements
 **Symptom**: Need to add multi-tenancy
 **Traditional**: Retrofit existing code
-**SDD**: Update contracts, regenerate with multi-tenancy built-in
+**Seam-Driven Development**: Update contracts, regenerate with multi-tenancy built-in
 
-## Tools for SDD Refactoring
+## Tools for Seam-Driven Development Refactoring
 
-### 1. `sdd_analyze_for_regeneration`
+### 1. `seam_analyze_for_regeneration`
 Identifies components that would benefit from regeneration
 
-### 2. `sdd_regenerate_component`
+### 2. `seam_regenerate_component`
 Regenerates a component from its contracts and blueprint
 
 ### Coming Soon:
-- `sdd_regenerate_project` - Regenerate entire project
-- `sdd_compare_implementations` - Compare old vs new
-- `sdd_migration_plan` - Plan phased regeneration
+- `seam_regenerate_project` - Regenerate entire project
+- `seam_compare_implementations` - Compare old vs new
+- `seam_migration_plan` - Plan phased regeneration
 
 ## The Future of Refactoring
 
@@ -202,7 +202,7 @@ The question is "How quickly can I regenerate this?"
 ## Summary
 
 **Traditional Refactoring**: Like renovating an old house
-**SDD Refactoring**: Like 3D-printing a new house from blueprints
+**Seam-Driven Development Refactoring**: Like 3D-printing a new house from blueprints
 
 When you have clear contracts and AI assistance, regeneration is:
 - ⚡ Faster

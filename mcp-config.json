@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "SeamsLikeIt": {
+      "command": "node",
+      "args": ["C:\\Users\\thump\\TextymcVoiceface\\mcp-server\\dist\\index.js"],
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+      }
+    }
+  }
+}

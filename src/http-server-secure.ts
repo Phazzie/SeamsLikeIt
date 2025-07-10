@@ -77,7 +77,7 @@ wss.on('connection', (ws) => {
 });
 
 // Health check (no auth required)
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ 
     status: 'healthy',
     tools: Object.keys(tools),
@@ -173,7 +173,7 @@ app.post('/tools/:toolName', authenticate, async (req, res) => {
 });
 
 // Error handling middleware
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error('Unhandled error:', err);
   
   const status = err.statusCode || 500;

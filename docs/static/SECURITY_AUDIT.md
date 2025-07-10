@@ -1,4 +1,4 @@
-# Security Audit - SDD MCP Server
+# Security Audit - Seam-Driven Development MCP Server
 
 ## Current Security Status: ⚠️ LOCAL USE ONLY
 

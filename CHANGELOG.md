@@ -1,11 +1,37 @@
 # Changelog
 
-All notable changes to the SDD MCP Server project are documented in this file.
+All notable changes to the SeamsLikeIt MCP Server project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.0] - 2025-01-09
+
+### Added
+- Complete rebranding from SDD to SeamsLikeIt
+- Gemini CLI integration support (GEMINI_INTEGRATION.md)
+- Parallel execution capabilities (30-40% performance improvement)
+- Modern UI with gradient effects and animations
+- WebSocket support for real-time progress tracking
+- Cost tracking and transparency features
+- AI Collaboration design with steelman arguments (AI_COLLABORATION_V2.md)
+- Seam-Driven insights section in UI
+- Best practices from real-world usage in documentation
+
+### Changed
+- All tool names from `sdd_*` to `seam_*`
+- Model updated to gpt-4.1-mini-2025-04-1
+- Documentation uses "Seam-Driven Development" consistently
+- Improved error handling and type safety
+- Documentation consolidated from 16 to 8 essential files
+
+### Fixed
+- TypeScript compilation issues
+- UI button handlers now properly wired
+- Security vulnerabilities in test HTML files
+- Gemini connection clarifications (GEMINI_CONNECTION_SOLUTION.md)
+
+## [0.9.0] - 2025-01-08
 
 ### Added
 - CLAUDE.md with comprehensive AI instructions and SDD principles
