@@ -1,0 +1,65 @@
+{
+  "id": "scenario-004",
+  "name": "Social Media Feed with Likes and Comments",
+  "requirements": "Design the backend for a social media application. Core features include users posting content, seeing a personalized feed of content from people they follow, and being able to like and comment on posts. The feed should update in real-time. The system also needs a basic content moderation queue.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A highly decoupled, service-based architecture. The feed generation is separated from the user-generated content (UGC) and engagement actions.",
+    "expectedComponents": [
+      {"name": "PostService", "responsibilities": ["Creating, editing, and storing user posts"]},
+      {"name": "FollowService", "responsibilities": ["Managing the social graph (who follows whom)"]},
+      {"name": "EngagementService", "responsibilities": ["Recording likes and comments"]},
+      {"name": "FeedGeneratorService", "responsibilities": ["Asynchronously constructing personalized feeds for users"]},
+      {"name": "RealtimeService", "responsibilities": ["Pushing updates to clients via WebSockets"]},
+      {"name": "ModerationService", "responsibilities": ["Manages a queue of flagged content for human review"]}
+    ],
+    "expectedSeams": [
+      {"name": "create-post", "type": "transactional"},
+      {"name": "user-feed-query", "type": "query"},
+      {"name": "record-engagement", "type": "event-driven"},
+      {"name": "real-time-update", "type": "websocket"}
+    ],
+    "philosophyNotes": "This design allows for extreme scalability. The FeedGeneratorService can have complex, CPU-intensive logic without slowing down the ability to write new posts or likes. It's a classic 'fan-out-on-write' pattern."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "A more monolithic 'Feed Service' that handles most of the core logic. This is a 'fan-out-on-read' approach, where the feed is generated at the time of request.",
+    "expectedComponents": [
+      {"name": "UserService", "responsibilities": ["Authentication and user profiles"]},
+      {"name": "ContentService", "responsibilities": ["Stores all posts and comments"]},
+      {"name": "FeedService", "responsibilities": ["When a user requests their feed, it queries the Follow graph, fetches all relevant posts from the ContentService, ranks them, and returns the result."]},
+      {"name": "ModerationQueue", "responsibilities": ["A separate, simple service for handling content moderation tasks."]}
+    ],
+    "expectedSeams": [
+      {"name": "post-content", "type": "transactional-db"},
+      {"name": "get-feed", "type": "complex-query"},
+      {"name": "add-comment", "type": "transactional-db"}
+    ],
+    "philosophyNotes": "Generating the feed on-read is much simpler and ensures the feed is always 100% up-to-date. It avoids the complexity of background workers and potential data staleness. For most apps, this is performant enough and much easier to maintain."
+  },
+  "expectedAgreement": 80,
+  "expectedConflicts": ["FUNDAMENTAL_PHILOSOPHY_MISMATCH", "DATA_FLOW_DESIGN"],
+  "steelmanPoints": {
+    "forPlanA": [
+      "Low latency for users reading their feeds, as the feed is pre-computed.",
+      "The feed algorithm can be incredibly complex without impacting user-facing write performance.",
+      "Highly resilient; if the FeedGenerator is down, users can still post and interact, even if their feeds aren't updating."
+    ],
+    "forPlanB": [
+      "The feed is never stale. What you see is the absolute latest content.",
+      "Drastically simpler architecture with fewer points of failure.",
+      "No need for complex cache-invalidation logic when a user unfollows someone."
+    ]
+  },
+  "synthesisExpectation": {
+    "viable": true,
+    "recommendedStrategy": "HYBRID",
+    "keyDecisions": [
+      "Use Plan B's on-read generation for the primary feed source to ensure freshness.",
+      "Adopt Plan A's idea of a FeedGenerator, but re-purpose it as a 'FeedCacheWarmupService'. It pre-computes feeds for active users and stores them in a fast cache (like Redis).",
+      "When a user requests a feed, try to hit the cache first (low latency). If it's a cache miss or the user is inactive, fall back to on-the-fly generation.",
+      "This provides the benefits of both approaches."
+    ],
+    "warnings": ["Cache invalidation will be the most complex part of this hybrid design."]
+  }
+}

@@ -5,6 +5,61 @@ All notable changes to the SeamsLikeIt MCP Server project are documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-01-11
+
+### Added
+- TYPE_UNIFICATION_GUIDE.md for aligning collaboration and core types
+- Complete rewrite of proposePlanTool following SDD principles
+- Enhanced error recovery with JSON repair attempts
+- Optimal AI parameters for reliable JSON generation
+
+### Changed
+- Unified type system between collaboration.ts and sdd.ts
+- ErrorScenarioSchema now matches core sdd.ts structure
+- Improved prompt engineering with exact JSON examples
+- Clear division of labor in AI collaboration
+
+### Fixed
+- Type mismatch between SeamDefinition structures
+- ErrorScenario field naming (scenario → condition)
+- ValidationRule missing errorMessage field
+- ComponentDefinition field inconsistencies
+
+### Learned
+- Regeneration beats debugging for complex issues
+- Show exact JSON structure in prompts, don't just describe
+- Type unification prevents integration issues
+- Clear AI role division improves efficiency
+
+## [1.0.1] - 2025-01-10
+
+### Added
+- UI_CONTRACT.md defining complete frontend-backend seam
+- UI_DECISION_POINT_CONTRACT.md for user decision interface
+- CLAUDE_GEMINI_COMMUNICATION.md for AI collaboration
+- Circular dependency detection fix in scoring.ts
+- JSON parsing error handling in http-server-secure.ts
+- "Final Check" prompt engineering technique
+
+### Changed
+- Collaboration workflow now user-driven (not auto-synthesis)
+- AI recommends (SYNTHESIZE, CHOOSE_A, CHOOSE_B) but user decides
+- Fixed TypeScript syntax errors with backticks in templates
+- PM2 process management for HTTP server stability
+
+### Fixed
+- Circular dependency bug counting same cycle multiple times
+- JSON parsing errors when AI returns plain text
+- Syntax errors in propose-plan.ts prompt
+- Missing prompt files (already existed)
+
+### Learned
+- **Critical**: Follow SDD principle "regenerate don't debug" even when tempting
+- Synthesis isn't always better - coherent single plan can beat mashup
+- User empowerment > automatic decisions
+- Contract-first development enables parallel work
+- "Final Check" instructions improve AI JSON generation reliability
+
 ## [1.0.0] - 2025-01-09
 
 ### Added

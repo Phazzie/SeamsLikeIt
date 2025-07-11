@@ -1,0 +1,245 @@
+{
+  "id": "perf-002",
+  "name": "Deeply Nested Dependencies",
+  "description": "Tests performance with a deep chain of dependencies.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A chain of services where each one depends on the next.",
+    "components": [
+      {
+        "name": "ComponentA0",
+        "dependencies": []
+      },
+      {
+        "name": "ComponentA1",
+        "dependencies": [
+          "ComponentA0"
+        ]
+      },
+      {
+        "name": "ComponentA2",
+        "dependencies": [
+          "ComponentA1"
+        ]
+      },
+      {
+        "name": "ComponentA3",
+        "dependencies": [
+          "ComponentA2"
+        ]
+      },
+      {
+        "name": "ComponentA4",
+        "dependencies": [
+          "ComponentA3"
+        ]
+      },
+      {
+        "name": "ComponentA5",
+        "dependencies": [
+          "ComponentA4"
+        ]
+      },
+      {
+        "name": "ComponentA6",
+        "dependencies": [
+          "ComponentA5"
+        ]
+      },
+      {
+        "name": "ComponentA7",
+        "dependencies": [
+          "ComponentA6"
+        ]
+      },
+      {
+        "name": "ComponentA8",
+        "dependencies": [
+          "ComponentA7"
+        ]
+      },
+      {
+        "name": "ComponentA9",
+        "dependencies": [
+          "ComponentA8"
+        ]
+      }
+    ],
+    "seams": [
+      {
+        "name": "seamA1",
+        "participants": [
+          "ComponentA1",
+          "ComponentA0"
+        ]
+      },
+      {
+        "name": "seamA2",
+        "participants": [
+          "ComponentA2",
+          "ComponentA1"
+        ]
+      },
+      {
+        "name": "seamA3",
+        "participants": [
+          "ComponentA3",
+          "ComponentA2"
+        ]
+      },
+      {
+        "name": "seamA4",
+        "participants": [
+          "ComponentA4",
+          "ComponentA3"
+        ]
+      },
+      {
+        "name": "seamA5",
+        "participants": [
+          "ComponentA5",
+          "ComponentA4"
+        ]
+      },
+      {
+        "name": "seamA6",
+        "participants": [
+          "ComponentA6",
+          "ComponentA5"
+        ]
+      },
+      {
+        "name": "seamA7",
+        "participants": [
+          "ComponentA7",
+          "ComponentA6"
+        ]
+      },
+      {
+        "name": "seamA8",
+        "participants": [
+          "ComponentA8",
+          "ComponentA7"
+        ]
+      },
+      {
+        "name": "seamA9",
+        "participants": [
+          "ComponentA9",
+          "ComponentA8"
+        ]
+      }
+    ]
+  },
+  "planB": {
+    "aiId": "AI-Beta",
+    "approach": "A flatter hierarchy to contrast the deep nesting.",
+    "components": [
+      {
+        "name": "OrchestratorB"
+      },
+      {
+        "name": "WorkerB0"
+      },
+      {
+        "name": "WorkerB1"
+      },
+      {
+        "name": "WorkerB2"
+      },
+      {
+        "name": "WorkerB3"
+      },
+      {
+        "name": "WorkerB4"
+      },
+      {
+        "name": "WorkerB5"
+      },
+      {
+        "name": "WorkerB6"
+      },
+      {
+        "name": "WorkerB7"
+      },
+      {
+        "name": "WorkerB8"
+      },
+      {
+        "name": "WorkerB9"
+      }
+    ],
+    "seams": [
+      {
+        "name": "seamB0",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB0"
+        ]
+      },
+      {
+        "name": "seamB1",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB1"
+        ]
+      },
+      {
+        "name": "seamB2",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB2"
+        ]
+      },
+      {
+        "name": "seamB3",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB3"
+        ]
+      },
+      {
+        "name": "seamB4",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB4"
+        ]
+      },
+      {
+        "name": "seamB5",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB5"
+        ]
+      },
+      {
+        "name": "seamB6",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB6"
+        ]
+      },
+      {
+        "name": "seamB7",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB7"
+        ]
+      },
+      {
+        "name": "seamB8",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB8"
+        ]
+      },
+      {
+        "name": "seamB9",
+        "participants": [
+          "OrchestratorB",
+          "WorkerB9"
+        ]
+      }
+    ]
+  }
+}

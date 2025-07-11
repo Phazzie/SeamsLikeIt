@@ -1,0 +1,16 @@
+{
+  "id": "error-001",
+  "name": "Invalid JSON",
+  "description": "This file tests the system's ability to handle malformed JSON input. The AI plan 'planA' is intentionally broken with a trailing comma.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A valid approach",
+    "expectedComponents": ["ComponentA", "ComponentB"],
+    "philosophyNotes": "This should fail to parse.",
+  },
+  "planB": {
+    "aiId": "AI-Beta",
+    "approach": "A valid approach",
+    "expectedComponents": ["ComponentC", "ComponentD"]
+  }
+}

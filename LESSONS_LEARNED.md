@@ -252,3 +252,126 @@ Found these patterns consistently reveal hidden seams:
 - **License matters**: MIT more adoptable than ISC for open source
 - **Cost transparency**: Users love seeing ~$0.0025 per workflow
 - **README structure**: Features → Cost → Examples → Architecture works best
+
+## Session: Jan 10, 2025 - Reinforcing SDD Principles
+
+### Critical Lesson: We Violated Our Own Principles!
+- **What Happened**: Spent hours debugging collaboration tools
+- **SDD Principle #3**: "When broken, regenerate - don't debug"
+- **Why We Failed**: Debugging seemed easier/faster than regeneration
+- **Lesson**: Trust the principles even when tempting to debug
+- **Time Wasted**: ~3 hours debugging vs 30 min to regenerate
+
+### AI Collaboration Architecture Evolution
+1. **v1 Design**: Auto-synthesis when plans differ
+2. **Problem**: "Design by committee" reduces coherence
+3. **v2 Design**: User-driven decision with AI recommendation
+   - Senior Architect AI provides critique
+   - User chooses: Plan A, Plan B, or Synthesize
+   - Quality preserved through human judgment
+
+### Technical Debugging Insights
+1. **Circular Dependency Bug**: 
+   - Problem: Counting same cycle multiple times
+   - Fix: Track unique cycles with sorted identifiers
+   - Learning: Complex graph algorithms need careful testing
+
+2. **JSON Parsing Errors**:
+   - Problem: Server expected JSON, AI returned plain text
+   - Fix: Try-catch with fallback to plain text
+   - Learning: Never assume AI output format
+
+3. **Prompt Engineering Success**:
+   - Adding "Final Check" instructions improved reliability
+   - Explicit field enumeration prevents missing data
+   - Self-validation in prompts catches AI errors
+
+### Contract-First Development Victory
+- Created UI_CONTRACT.md and UI_DECISION_POINT_CONTRACT.md
+- Enabled parallel development (Gemini on backend, Claude on frontend)
+- Clear boundaries prevented integration issues
+- Contracts serve as single source of truth
+
+### Debugging vs Regeneration Decision Framework
+```
+Time spent debugging?
+├─ <10 min: Is it syntax/typo? 
+│   ├─ Yes: Fix it
+│   └─ No: Consider regeneration
+├─ 10-30 min: Strong bias toward regeneration
+└─ >30 min: STOP! Regenerate immediately
+```
+
+### User Experience Insights
+1. **Decision Fatigue**: Too many AI options overwhelm users
+2. **Visual Comparison**: Side-by-side plans essential
+3. **Trust Building**: Show AI confidence scores
+4. **Escape Hatch**: Always allow "generate new plans"
+
+### PM2 Process Management
+- `pm2 list` to see running processes
+- `pm2 restart <name>` more reliable than stop/start
+- `pm2 logs --lines 100` for debugging
+- Cluster mode caused more issues than benefits
+
+### What We Should Have Done
+1. Recognized debugging spiral at 30 min mark
+2. Used seam_regenerate_component tool
+3. Created fresh implementation from contracts
+4. Tested with simple examples first
+5. Trusted SDD principles over "quick fixes"
+
+## Session: Jan 11, 2025 - Type Unification & Tool Regeneration
+
+### Type System Unification Success
+1. **Problem**: Mismatch between sdd.ts and collaboration.ts types
+   - SeamDefinition: participants object vs producerId/consumerId strings
+   - ErrorScenario: condition vs scenario field names
+   - ComponentDefinition: purpose vs description fields
+2. **Solution**: Unified all types to match core sdd.ts
+3. **Process**: Created TYPE_UNIFICATION_GUIDE.md with exact mappings
+4. **Result**: Clean type system, no more integration issues
+
+### proposePlanTool Regeneration Insights
+1. **Clean Slate Victory**: Deleted old code, started fresh
+2. **Prompt Engineering Breakthrough**:
+   - Show EXACT JSON structure expected
+   - Include field-by-field examples
+   - Add "CRITICAL" and "IMPORTANT REMINDERS" sections
+3. **Error Recovery Pattern**:
+   - Primary attempt with optimal parameters
+   - Repair attempt if JSON parsing fails
+   - Detailed error reporting for debugging
+4. **Optimal AI Parameters Confirmed**:
+   ```typescript
+   temperature: 0.7,
+   topP: 0.95,
+   frequencyPenalty: 0.1,
+   presencePenalty: 0.1,
+   responseFormat: { type: 'json_object' }
+   ```
+
+### Effective AI Collaboration Patterns
+1. **Division of Labor by Strength**:
+   - Claude: Prompt engineering, UI/UX, security
+   - Gemini: Architecture, type systems, technical design
+2. **Async Communication**: CLAUDE_GEMINI_COMMUNICATION.md works well
+3. **Cross-Review**: Each AI reviews the other's work
+4. **Parallel Development**: Work on separate components simultaneously
+
+### Key Regeneration Principles
+1. **Don't Patch, Replace**: Fresh code has no accumulated debt
+2. **Contract-First**: Define exact output structure before coding
+3. **Type-First**: Create Zod schemas before implementation
+4. **Test-First**: Build verification harness alongside tool
+
+### What Worked Exceptionally Well
+1. **TYPE_UNIFICATION_GUIDE.md**: Clear migration examples
+2. **Showing vs Telling**: JSON examples beat descriptions
+3. **Repair Pattern**: Second chance for malformed JSON
+4. **Clear Error Messages**: Include details for debugging
+
+### Time Savings from Regeneration
+- Debugging proposePlanTool: ~4 hours (failed)
+- Regenerating proposePlanTool: ~30 minutes (succeeded)
+- **Conclusion**: 8x faster to regenerate than debug

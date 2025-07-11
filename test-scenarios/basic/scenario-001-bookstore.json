@@ -1,0 +1,63 @@
+{
+  "id": "scenario-001",
+  "name": "Online Bookstore with User Reviews",
+  "requirements": "Build an online bookstore that allows users to browse, search, and purchase books. Users must be able to register and log in to their accounts. Once logged in, they can write reviews for books they have purchased. The system needs a shopping cart for users to add books to before checkout and a simple order processing system.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A microservices-oriented architecture where each core domain is handled by a dedicated service, promoting separation of concerns and independent scalability.",
+    "expectedComponents": [
+      {"name": "UserService", "responsibilities": ["User registration", "Authentication", "Profile management"]},
+      {"name": "BookService", "responsibilities": ["Product catalog", "Book search", "Inventory tracking"]},
+      {"name": "ReviewService", "responsibilities": ["Review submission", "Rating calculation", "Displaying reviews"]},
+      {"name": "CartService", "responsibilities": ["Add/remove items", "Persist cart across sessions", "Calculate totals"]},
+      {"name": "OrderService", "responsibilities": ["Order placement", "Payment processing coordination", "Order history"]}
+    ],
+    "expectedSeams": [
+      {"name": "user-authentication", "type": "security"},
+      {"name": "book-search", "type": "query"},
+      {"name": "review-submission", "type": "transactional"},
+      {"name": "cart-management", "type": "stateful"},
+      {"name": "order-processing", "type": "workflow"}
+    ],
+    "philosophyNotes": "This approach prioritizes long-term scalability and maintainability by isolating domains. It allows teams to work on different services independently and deploy updates without affecting the entire system."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "A more monolithic but modular approach, grouping related functionalities into larger services to reduce network overhead and simplify local development.",
+    "expectedComponents": [
+      {"name": "AccountManagement", "responsibilities": ["Handles all user, review, and order history functionality"]},
+      {"name": "CatalogAndCart", "responsibilities": ["Manages the book catalog, inventory, and shopping cart logic"]},
+      {"name": "CheckoutService", "responsibilities": ["A dedicated service to handle the complexities of order placement and payment."]}
+    ],
+    "expectedSeams": [
+      {"name": "account-access", "type": "internal-api"},
+      {"name": "catalog-query", "type": "internal-api"},
+      {"name": "checkout-process", "type": "transactional-workflow"}
+    ],
+    "philosophyNotes": "This approach is faster to develop initially and has less operational complexity. It avoids the latency of inter-service communication for tightly coupled operations like fetching a user's reviews for a book."
+  },
+  "expectedAgreement": 90,
+  "expectedConflicts": ["COMPONENT_BOUNDARIES", "FUNDAMENTAL_PHILOSOPHY_MISMATCH"],
+  "steelmanPoints": {
+    "forPlanA": [
+      "ReviewService can be scaled independently if it becomes a high-traffic feature.",
+      "Clear ownership boundaries for development teams.",
+      "Higher resilience; a failure in BookService won't bring down user login."
+    ],
+    "forPlanB": [
+      "Reduced network latency for core user flows.",
+      "Simpler to debug and trace requests that span multiple domains.",
+      "Easier to ensure data consistency with a shared database layer."
+    ]
+  },
+  "synthesisExpectation": {
+    "viable": true,
+    "recommendedStrategy": "MERGE",
+    "keyDecisions": [
+      "Adopt Plan A's component structure for clear separation.",
+      "Concede to Plan B's point on data consistency by using a well-designed shared database schema initially.",
+      "Merge CartService into BookService to reduce chattiness, as they are tightly coupled."
+    ],
+    "warnings": ["A pure microservices approach might be overkill for the initial MVP."]
+  }
+}

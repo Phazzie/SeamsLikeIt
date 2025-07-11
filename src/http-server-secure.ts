@@ -20,6 +20,12 @@ import { orchestrateParallelTool } from './tools/orchestrate-parallel.js';
 import { regenerateComponentTool } from './tools/regenerate-component.js';
 import { analyzeForRegenerationTool } from './tools/analyze-for-regeneration.js';
 import { evolveContractTool } from './tools/evolve-contract.js';
+import { 
+  proposePlanTool,
+  comparePlansTool,
+  steelmanArgumentTool,
+  synthesizePlansTool
+} from './tools/collaboration/index.js';
 
 // Import middleware and utilities
 import { authenticate, rateLimiters, generateToken } from './middleware/auth.js';
@@ -37,6 +43,11 @@ const tools = {
   sdd_regenerate_component: regenerateComponentTool,
   sdd_analyze_for_regeneration: analyzeForRegenerationTool,
   sdd_evolve_contract: evolveContractTool,
+  // Collaboration tools (also accept seam_ prefix for consistency)
+  seam_propose_plan: proposePlanTool,
+  seam_compare_plans: comparePlansTool,
+  seam_steelman_argument: steelmanArgumentTool,
+  seam_synthesize_plans: synthesizePlansTool,
 };
 
 const app = express();
@@ -81,9 +92,13 @@ app.get('/health', (_req, res) => {
   res.json({ 
     status: 'healthy',
     tools: Object.keys(tools),
-    version: '2.0.0',
+    version: '1.0.0',
     auth: 'JWT enabled',
-    websocket: `ws://localhost:${PORT}`
+    websocket: `ws://localhost:${PORT}`,
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    memory: process.memoryUsage(),
+    environment: process.env.NODE_ENV || 'development'
   });
 });
 
@@ -146,9 +161,22 @@ app.post('/tools/:toolName', authenticate, async (req, res) => {
     progressTracker.completeTool(toolName, sessionId, result);
     
     // Format response
+    let data;
+    if (result.content?.[0]?.text) {
+      try {
+        // Try to parse as JSON
+        data = JSON.parse(result.content[0].text);
+      } catch (e) {
+        // If not JSON, return as plain text
+        data = { message: result.content[0].text };
+      }
+    } else {
+      data = result;
+    }
+    
     const response = {
       success: true,
-      data: result.content?.[0]?.text ? JSON.parse(result.content[0].text) : result,
+      data,
       sessionId
     };
     

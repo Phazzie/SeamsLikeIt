@@ -1,5 +1,46 @@
 # SeamsLikeIt - AI Assistant Instructions
 
+# 🚨 CRITICAL: REGENERATE, DON'T DEBUG! 🚨
+
+## THE GOLDEN RULE OF SEAM-DRIVEN DEVELOPMENT
+
+**WHEN SOMETHING IS BROKEN, REGENERATE IT. DO NOT DEBUG.**
+
+This is not a suggestion. This is THE CORE PRINCIPLE. If you find yourself debugging for more than 5 minutes, STOP IMMEDIATELY and regenerate the component from its contract.
+
+### Why We Regenerate Instead of Debug:
+1. **Debugging violates SDD Principle #3**: "When broken, regenerate - don't debug"
+2. **Clean code beats patched code**: Every time, no exceptions
+3. **Contracts are the source of truth**: If it doesn't match the contract, throw it away
+4. **Time saved**: 30 minutes of debugging = 5 minutes of regeneration
+5. **Quality**: Regenerated code is cleaner, more maintainable, and contract-compliant
+
+### Decision Tree for EVERY Problem:
+```
+Is something broken?
+├─ No → Continue using SDD principles
+└─ Yes → Have you been debugging for >5 minutes?
+    ├─ No → Is it a typo or import error?
+    │   ├─ Yes → Fix it (1 minute max)
+    │   └─ No → REGENERATE NOW
+    └─ Yes → STOP! You're violating SDD. REGENERATE IMMEDIATELY.
+```
+
+### Remember:
+- **TypeScript errors?** → Regenerate the component
+- **Integration failing?** → Regenerate from the contract
+- **Tests not passing?** → Regenerate with correct behavior
+- **Confused about implementation?** → Delete it and regenerate
+
+## 🎯 ALWAYS USE SEAM-DRIVEN DEVELOPMENT PRINCIPLES
+
+Every single piece of code you write MUST follow SDD principles:
+1. Define seams FIRST
+2. Create contracts BEFORE implementation
+3. Use ContractResult<T> for ALL cross-component communication
+4. Regenerate broken components (don't debug them)
+5. Over-identify seams, then consolidate
+
 ## What is Seam-Driven Development?
 
 Seam-Driven Development is a revolutionary methodology that treats component communication pathways (seams) as first-class architectural citizens. Instead of building components and hoping they integrate, Seam-Driven Development defines all integration points FIRST, making integration failures architecturally impossible.
@@ -297,13 +338,138 @@ Sometimes a coherent 80% solution beats an awkward 95% mashup. The system now de
 - Progress tracking essential for long operations
 - Cost transparency builds trust
 
+## Session Jan 10, 2025 - AI Collaboration & SDD Reinforcement
+
+### Critical Lesson: Don't Debug, Regenerate!
+We spent hours debugging collaboration tools when SDD principle #3 clearly states "When broken, regenerate - don't debug". This session reinforced the importance of following SDD principles even when debugging seems easier.
+
+## Session Jan 11, 2025 - Type Unification & Tool Regeneration
+
+### Major Achievements
+1. **Type System Unification**: Gemini successfully unified collaboration.ts types with core sdd.ts types
+2. **proposePlanTool Regeneration**: Completely rewrote the tool from scratch following SDD principles
+3. **Collaborative Workflow**: Established clear division of labor between AIs for maximum efficiency
+
+### AI Collaboration Architecture Evolution
+1. **Initial Design**: Auto-synthesis of plans
+2. **Problem Identified**: Synthesis can reduce coherence ("design by committee")
+3. **New Architecture**: User-driven decision with AI recommendations
+   - Two AIs generate independent plans
+   - Senior Architect AI critiques and recommends
+   - User makes final decision: Plan A, Plan B, or Synthesize
+   - Synthesis only happens if user chooses it
+
+### Key Technical Fixes
+1. **Circular Dependency Bug**: Fixed in scoring.ts by tracking unique cycles
+2. **JSON Parsing**: Added try-catch to handle both JSON and plain text responses
+3. **Prompt Engineering**: Added "Final Check" instructions for reliable JSON generation
+4. **TypeScript Errors**: Fixed syntax issues with backticks in template literals
+
+### New Contracts Created
+1. **UI_CONTRACT.md**: Complete frontend-backend seam definition
+   - Authentication flows and JWT handling
+   - REST API endpoints for all operations
+   - WebSocket events for real-time updates
+   - Error handling and rate limiting
+
+2. **UI_DECISION_POINT_CONTRACT.md**: Critical user decision interface
+   - Side-by-side plan comparison
+   - AI critique visualization
+   - Responsive design for all devices
+   - Accessibility requirements
+
+### Collaboration Best Practices
+1. **Contract-First Development**: Define seams before implementation
+2. **Parallel Work**: Frontend and backend can develop independently with clear contracts
+3. **User Empowerment**: AI recommends, user decides
+4. **Quality Over Synthesis**: Sometimes choosing one coherent plan beats merging two
+
+### Debugging vs Regeneration Decision Tree
+```
+Is it broken?
+├─ No → Continue
+└─ Yes → Have you been debugging >30 minutes?
+    ├─ No → Is it a simple syntax/type error?
+    │   ├─ Yes → Fix it
+    │   └─ No → Regenerate
+    └─ Yes → STOP! Regenerate immediately
+```
+
+### Key Lessons from proposePlanTool Regeneration
+1. **Clean Slate Approach**: Delete old code and start fresh with clear contracts
+2. **Prompt Engineering**: Show exact JSON structure expected, not just describe it
+3. **Type-First Development**: Define Zod schemas before implementation
+4. **Error Recovery**: Include repair attempts for malformed JSON
+5. **Optimal AI Parameters**:
+   ```typescript
+   temperature: 0.7,
+   topP: 0.95,
+   frequencyPenalty: 0.1,
+   presencePenalty: 0.1,
+   responseFormat: { type: 'json_object' }
+   ```
+
+### Effective AI Collaboration Pattern
+1. **Clear Division of Labor**:
+   - Claude: Prompt engineering, security, UI/UX
+   - Gemini: Architecture, type systems, technical design
+2. **Parallel Work**: Each AI works on separate components
+3. **Cross-Review**: Review each other's work for quality
+4. **Communication**: Use CLAUDE_GEMINI_COMMUNICATION.md for async updates
+
 ## Common Issues & Quick Fixes
 
 1. **"Module not found" errors**: Run `npm install`
-2. **"Port already in use"**: Kill process on port 3000
+2. **"Port already in use"**: Kill process on port 3000 or check PM2: `pm2 list`
 3. **"API key missing"**: Check .env file has OPENAI_API_KEY
 4. **TypeScript errors**: Run `npm run build` to see all issues
 5. **"Model not found"**: Ensure you're using exact model name: gpt-4.1-mini-2025-04-1
+6. **PM2 issues**: Use `pm2 list` to check running processes, `pm2 restart <name>` to restart
+7. **JSON generation failures**: Add "Final Check" instruction to prompts
+8. **Module resolution issues**: 
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+9. **Rate limit reached**: Wait 15 minutes or use different API key
+10. **Server won't start**:
+    ```bash
+    npm run pm2:stop
+    npm run pm2:delete
+    npm run build
+    npm run pm2:start
+    ```
+
+## WebSocket Implementation Pattern
+
+For real-time updates in collaboration tools:
+```typescript
+const ws = new WebSocket('ws://localhost:3000/ws');
+ws.on('message', (data) => {
+  const event = JSON.parse(data);
+  switch(event.type) {
+    case 'plan_proposed':
+    case 'comparison_complete':
+    case 'synthesis_complete':
+      // Handle per UI_CONTRACT.md
+  }
+});
+```
+
+## Testing Collaboration Tools
+
+```bash
+# Get auth token
+TOKEN=$(curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username": "demo", "password": "demo123"}' | jq -r '.token')
+
+# Test any tool
+curl -X POST http://localhost:3000/tools/seam_propose_plan \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"requirements": "Your requirements here", "aiId": "TestAI"}'
+```
 
 ## META: Improving These Instructions
 
@@ -313,3 +479,30 @@ After each session, ask yourself:
 3. What mistake did I make that others should avoid?
 
 Then UPDATE this file with that knowledge. This is a living document that gets better with each use.
+
+## Session Jan 11, 2025 - Critical Reminder: REGENERATE, DON'T DEBUG!
+
+### What Happened
+I discovered the OpenAI API was working and restored all collaboration tools from mock to real AI. When I encountered TypeScript errors, I started trying to TEST the broken tools instead of REGENERATING them. The user had to remind me to follow SDD principles.
+
+### The Lesson
+**EVEN WHEN YOU THINK YOU'RE "ALMOST THERE", REGENERATE BROKEN COMPONENTS!**
+
+I violated SDD Principle #3 by trying to test/debug instead of regenerating. This is exactly the trap that SDD warns against:
+- "Just let me test it first" → NO! Regenerate it.
+- "But I only changed one thing" → NO! Regenerate it.
+- "The errors look simple" → NO! Regenerate it.
+
+### What I Should Have Done
+1. Noticed TypeScript errors in collaboration tools
+2. Immediately regenerated each broken tool from its contract
+3. NOT tried to test broken code
+4. NOT tried to work around errors
+
+### The Regeneration I Need to Do Now
+- [ ] Regenerate propose-plan.ts from contract
+- [ ] Regenerate steelman-argument.ts from contract  
+- [ ] Regenerate synthesize-plans.ts from contract
+- [ ] Regenerate compare-plans.ts from contract
+
+Remember: The temptation to debug is strongest when you think you're close. That's EXACTLY when you need to regenerate most!

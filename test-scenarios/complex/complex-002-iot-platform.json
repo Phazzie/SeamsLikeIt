@@ -1,0 +1,61 @@
+{
+  "id": "complex-002",
+  "name": "IoT Device Management Platform",
+  "requirements": "Design a platform to manage a fleet of IoT devices. Devices send telemetry data (e.g., temperature) every minute. Users should be able to view real-time data, see historical charts, and send commands back to the devices (e.g., 'reboot'). The system must be secure and handle millions of concurrent device connections.",
+  "rounds": [
+    {
+      "round": 1,
+      "focus": "High-level approach for device communication.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "Use a message broker (like MQTT) for all device communication. This is a standard pattern for IoT.",
+        "components": ["DeviceGateway (MQTT)", "TelemetryProcessor", "CommandService", "DashboardAPI"]
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "Use a direct WebSocket connection for each device to a scalable gateway service.",
+        "components": ["WebSocketGateway", "DataIngestionService", "DeviceCommandService", "AnalyticsAPI"]
+      },
+      "synthesisExpectation": {
+        "strategy": "STEELMAN_AND_MERGE",
+        "outcome": "Acknowledge MQTT (Plan A) is superior for low-power devices. However, WebSockets (Plan B) are better for the real-time dashboard. The synthesis should propose an MQTT gateway for devices and a separate WebSocket service for front-end clients."
+      }
+    },
+    {
+      "round": 2,
+      "focus": "Data storage and processing strategy.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "Use a time-series database (like InfluxDB) for all telemetry data to optimize for historical queries.",
+        "seams": ["store-telemetry", "query-history"]
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "Use a standard relational database for recent data and roll up older data into a cheaper object storage for analytics.",
+        "seams": ["log-telemetry", "archive-old-data"]
+      },
+      "synthesisExpectation": {
+        "strategy": "HYBRID",
+        "outcome": "Adopt Plan A's time-series database as the primary store for telemetry, as it's the best tool for the job. However, incorporate Plan B's idea by creating a 'DataTieringService' that moves data from the expensive time-series DB to cheaper storage after a certain period (e.g., 90 days)."
+      }
+    },
+    {
+      "round": 3,
+      "focus": "Security model for device commands.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "A certificate-based authentication system for each device.",
+        "components": ["DeviceIdentityService", "PKInfrastructure"]
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "A simpler JWT token-based system where devices get short-lived tokens.",
+        "components": ["AuthService", "TokenRefreshService"]
+      },
+      "synthesisExpectation": {
+        "strategy": "SELECT_BETTER",
+        "outcome": "Select Plan A. For IoT, device-level certificates are a much stronger and more accepted security posture than JWT tokens, which are better suited for user sessions."
+      }
+    }
+  ]
+}

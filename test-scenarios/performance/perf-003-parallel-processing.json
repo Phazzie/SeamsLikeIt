@@ -1,0 +1,427 @@
+{
+  "id": "perf-003",
+  "name": "Parallel Processing",
+  "description": "A scenario with many independent components, designed to be highly suitable for parallel processing tools.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A set of 20 independent services that do not communicate with each other, only with a central gateway.",
+    "components": [
+      {
+        "name": "GatewayA"
+      },
+      {
+        "name": "IndependentServiceA0"
+      },
+      {
+        "name": "IndependentServiceA1"
+      },
+      {
+        "name": "IndependentServiceA2"
+      },
+      {
+        "name": "IndependentServiceA3"
+      },
+      {
+        "name": "IndependentServiceA4"
+      },
+      {
+        "name": "IndependentServiceA5"
+      },
+      {
+        "name": "IndependentServiceA6"
+      },
+      {
+        "name": "IndependentServiceA7"
+      },
+      {
+        "name": "IndependentServiceA8"
+      },
+      {
+        "name": "IndependentServiceA9"
+      },
+      {
+        "name": "IndependentServiceA10"
+      },
+      {
+        "name": "IndependentServiceA11"
+      },
+      {
+        "name": "IndependentServiceA12"
+      },
+      {
+        "name": "IndependentServiceA13"
+      },
+      {
+        "name": "IndependentServiceA14"
+      },
+      {
+        "name": "IndependentServiceA15"
+      },
+      {
+        "name": "IndependentServiceA16"
+      },
+      {
+        "name": "IndependentServiceA17"
+      },
+      {
+        "name": "IndependentServiceA18"
+      },
+      {
+        "name": "IndependentServiceA19"
+      }
+    ],
+    "seams": [
+      {
+        "name": "seamA0",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA0"
+        ]
+      },
+      {
+        "name": "seamA1",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA1"
+        ]
+      },
+      {
+        "name": "seamA2",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA2"
+        ]
+      },
+      {
+        "name": "seamA3",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA3"
+        ]
+      },
+      {
+        "name": "seamA4",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA4"
+        ]
+      },
+      {
+        "name": "seamA5",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA5"
+        ]
+      },
+      {
+        "name": "seamA6",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA6"
+        ]
+      },
+      {
+        "name": "seamA7",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA7"
+        ]
+      },
+      {
+        "name": "seamA8",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA8"
+        ]
+      },
+      {
+        "name": "seamA9",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA9"
+        ]
+      },
+      {
+        "name": "seamA10",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA10"
+        ]
+      },
+      {
+        "name": "seamA11",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA11"
+        ]
+      },
+      {
+        "name": "seamA12",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA12"
+        ]
+      },
+      {
+        "name": "seamA13",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA13"
+        ]
+      },
+      {
+        "name": "seamA14",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA14"
+        ]
+      },
+      {
+        "name": "seamA15",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA15"
+        ]
+      },
+      {
+        "name": "seamA16",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA16"
+        ]
+      },
+      {
+        "name": "seamA17",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA17"
+        ]
+      },
+      {
+        "name": "seamA18",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA18"
+        ]
+      },
+      {
+        "name": "seamA19",
+        "participants": [
+          "GatewayA",
+          "IndependentServiceA19"
+        ]
+      }
+    ]
+  },
+  "planB": {
+    "aiId": "AI-Beta",
+    "approach": "A similar set of independent services for comparison.",
+    "components": [
+      {
+        "name": "GatewayB"
+      },
+      {
+        "name": "IndependentServiceB0"
+      },
+      {
+        "name": "IndependentServiceB1"
+      },
+      {
+        "name": "IndependentServiceB2"
+      },
+      {
+        "name": "IndependentServiceB3"
+      },
+      {
+        "name": "IndependentServiceB4"
+      },
+      {
+        "name": "IndependentServiceB5"
+      },
+      {
+        "name": "IndependentServiceB6"
+      },
+      {
+        "name": "IndependentServiceB7"
+      },
+      {
+        "name": "IndependentServiceB8"
+      },
+      {
+        "name": "IndependentServiceB9"
+      },
+      {
+        "name": "IndependentServiceB10"
+      },
+      {
+        "name": "IndependentServiceB11"
+      },
+      {
+        "name": "IndependentServiceB12"
+      },
+      {
+        "name": "IndependentServiceB13"
+      },
+      {
+        "name": "IndependentServiceB14"
+      },
+      {
+        "name": "IndependentServiceB15"
+      },
+      {
+        "name": "IndependentServiceB16"
+      },
+      {
+        "name": "IndependentServiceB17"
+      },
+      {
+        "name": "IndependentServiceB18"
+      },
+      {
+        "name": "IndependentServiceB19"
+      }
+    ],
+    "seams": [
+      {
+        "name": "seamB0",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB0"
+        ]
+      },
+      {
+        "name": "seamB1",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB1"
+        ]
+      },
+      {
+        "name": "seamB2",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB2"
+        ]
+      },
+      {
+        "name": "seamB3",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB3"
+        ]
+      },
+      {
+        "name": "seamB4",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB4"
+        ]
+      },
+      {
+        "name": "seamB5",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB5"
+        ]
+      },
+      {
+        "name": "seamB6",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB6"
+        ]
+      },
+      {
+        "name": "seamB7",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB7"
+        ]
+      },
+      {
+        "name": "seamB8",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB8"
+        ]
+      },
+      {
+        "name": "seamB9",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB9"
+        ]
+      },
+      {
+        "name": "seamB10",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB10"
+        ]
+      },
+      {
+        "name": "seamB11",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB11"
+        ]
+      },
+      {
+        "name": "seamB12",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB12"
+        ]
+      },
+      {
+        "name": "seamB13",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB13"
+        ]
+      },
+      {
+        "name": "seamB14",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB14"
+        ]
+      },
+      {
+        "name": "seamB15",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB15"
+        ]
+      },
+      {
+        "name": "seamB16",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB16"
+        ]
+      },
+      {
+        "name": "seamB17",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB17"
+        ]
+      },
+      {
+        "name": "seamB18",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB18"
+        ]
+      },
+      {
+        "name": "seamB19",
+        "participants": [
+          "GatewayB",
+          "IndependentServiceB19"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "complex-003",
+  "name": "Online Learning Platform with Live Classes",
+  "requirements": "Build an online learning platform where instructors can create courses with video lectures and quizzes. The platform must also support live, interactive classes using WebRTC for video streaming and a real-time chat. Users should have a dashboard to track their progress.",
+  "rounds": [
+    {
+      "round": 1,
+      "focus": "Overall architecture: Monolith vs. Microservices.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "A modular monolith to start. The real-time components are complex and a monolith simplifies development initially.",
+        "components": ["CourseModule", "QuizModule", "UserModule", "LiveClassModule"]
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "A microservices architecture to separate the standard course content from the high-traffic, stateful live-streaming features.",
+        "components": ["CourseService", "UserService", "LiveStreamingService", "ChatService", "ProgressService"]
+      },
+      "synthesisExpectation": {
+        "strategy": "PHASE_BASED",
+        "outcome": "Start with Plan A's modular monolith for the core platform (courses, users, progress). However, build the Live Streaming and Chat features as a separate service from day one (as in Plan B), as its scaling and infrastructure needs are dramatically different."
+      }
+    },
+    {
+      "round": 2,
+      "focus": "Handling real-time features for the live class.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "Use a third-party service (like Agora or Twilio Video) to handle all the WebRTC complexity.",
+        "components": ["WebRTCGatewayService"]
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "Build a custom WebRTC signaling server and use open-source media servers.",
+        "components": ["SignalingServer", "MediaServerFarm"]
+      },
+      "synthesisExpectation": {
+        "strategy": "SELECT_BETTER",
+        "outcome": "Select Plan A. Building a custom, scalable WebRTC solution is incredibly complex and expensive. Using a third-party provider is the pragmatic and recommended approach for almost all use cases."
+      }
+    },
+    {
+      "round": 3,
+      "focus": "Tracking user progress.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "The ProgressService listens to events from other services ('VideoWatched', 'QuizCompleted') to update a user's progress.",
+        "seams": ["progress-events", "get-user-progress"]
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "Each service (Course, Quiz) is responsible for its own progress tracking. The user's dashboard queries all services and aggregates the data on-the-fly.",
+        "seams": ["get-video-progress", "get-quiz-progress"]
+      },
+      "synthesisExpectation": {
+        "strategy": "STEELMAN_AND_MERGE",
+        "outcome": "Adopt Plan A's event-driven ProgressService as the source of truth, as it provides a single, clean place to manage progress logic. However, acknowledge Plan B's point about data ownership by having the Course/Quiz services publish very detailed events that the ProgressService consumes."
+      }
+    }
+  ]
+}

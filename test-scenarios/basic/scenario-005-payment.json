@@ -1,0 +1,60 @@
+{
+  "id": "scenario-005",
+  "name": "Payment Processing with Fraud Detection",
+  "requirements": "Design a payment processing system for an e-commerce site. It must be PCI compliant. When a payment is initiated, it should be checked by an external fraud detection service. The system must handle webhooks from the payment provider (e.g., Stripe) to confirm payment success or failure.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A fully asynchronous, event-driven architecture. The payment process is a long-running workflow (a saga) that coordinates between services.",
+    "expectedComponents": [
+      {"name": "PaymentInitiationService", "responsibilities": ["Provides an endpoint for the frontend to start a payment"]},
+      {"name": "FraudDetectionService", "responsibilities": ["Calls the external fraud detection API"]},
+      {"name": "PaymentGatewayService", "responsibilities": ["Interacts with the Stripe/PayPal API"]},
+      {"name": "WebhookHandlerService", "responsibilities": ["Receives and validates incoming webhooks"]},
+      {"name": "PaymentOrchestrator", "responsibilities": ["Manages the state of the payment saga, coordinating the other services"]}
+    ],
+    "expectedSeams": [
+      {"name": "initiate-payment", "type": "async-workflow"},
+      {"name": "fraud-check", "type": "external-api"},
+      {"name": "process-webhook", "type": "event-driven"}
+    ],
+    "philosophyNotes": "Payments are not instantaneous. By modeling the process as an asynchronous saga, the system is highly resilient. A failure in the fraud service doesn't block new payment initiations, and the orchestrator can handle retries and compensation logic gracefully."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "A simpler, more synchronous approach. The API call to initiate a payment handles the fraud check directly and returns a pending status. A separate, isolated process handles the webhooks.",
+    "expectedComponents": [
+      {"name": "PaymentService", "responsibilities": ["Exposes a 'charge' endpoint that internally calls the fraud service and then the payment provider. It creates a 'pending' payment record in the database."]},
+      {"name": "WebhookProcessor", "responsibilities": ["A single, isolated endpoint that receives all webhooks, validates them, and updates the status of the payment record in the database."]}
+    ],
+    "expectedSeams": [
+      {"name": "create-charge", "type": "synchronous-api"},
+      {"name": "handle-stripe-webhook", "type": "webhook"}
+    ],
+    "philosophyNotes": "For the user, the payment initiation *feels* synchronous. This is a simpler mental model. The complexity of long-running processes is avoided. The webhook processor is a simple, stateless function that updates a database record, making it easy to test and deploy."
+  },
+  "expectedAgreement": 85,
+  "expectedConflicts": ["SYNCHRONOUS_VS_ASYNCHRONOUS", "WORKFLOW_MANAGEMENT"],
+  "steelmanPoints": {
+    "forPlanA": [
+      "Extremely resilient to failures in external services.",
+      "The orchestrator provides a clear, auditable state machine for each payment.",
+      "Easier to add more steps to the process later (e.g., an additional KYC check)."
+    ],
+    "forPlanB": [
+      "Much lower implementation complexity.",
+      "The client gets immediate feedback that the payment is being processed.",
+      "The database serves as the single source of truth for payment status, which is easy to query."
+    ]
+  },
+  "synthesisExpectation": {
+    "viable": true,
+    "recommendedStrategy": "MERGE",
+    "keyDecisions": [
+      "Adopt Plan B's simple 'create-charge' endpoint for the initial user-facing API, as it provides a better user experience.",
+      "Internally, this endpoint should not call other services directly. Instead, it should publish a 'PaymentInitiated' event.",
+      "This event then triggers Plan A's asynchronous workflow (Orchestrator, Fraud Detection, etc.).",
+      "This gives the user the simple experience of Plan B, with the resilience and scalability of Plan A."
+    ],
+    "warnings": ["Careful state management is needed to ensure the user's order reflects the 'pending' status correctly until the async workflow completes."]
+  }
+}

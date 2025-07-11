@@ -1,0 +1,14 @@
+{
+  "id": "error-002",
+  "name": "Missing Required Fields",
+  "description": "Tests if the system can gracefully handle a plan that is missing required fields, like 'approach'.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "expectedComponents": ["ComponentA", "ComponentB"]
+  },
+  "planB": {
+    "aiId": "AI-Beta",
+    "approach": "A valid approach",
+    "expectedComponents": ["ComponentC", "ComponentD"]
+  }
+}

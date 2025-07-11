@@ -1,0 +1,1721 @@
+{
+  "id": "perf-001",
+  "name": "Large-Scale Architecture",
+  "description": "Tests the system's performance when dealing with a very large number of components and seams.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A large-scale microservices architecture.",
+    "components": [
+      {
+        "name": "ServiceA0"
+      },
+      {
+        "name": "ServiceA1"
+      },
+      {
+        "name": "ServiceA2"
+      },
+      {
+        "name": "ServiceA3"
+      },
+      {
+        "name": "ServiceA4"
+      },
+      {
+        "name": "ServiceA5"
+      },
+      {
+        "name": "ServiceA6"
+      },
+      {
+        "name": "ServiceA7"
+      },
+      {
+        "name": "ServiceA8"
+      },
+      {
+        "name": "ServiceA9"
+      },
+      {
+        "name": "ServiceA10"
+      },
+      {
+        "name": "ServiceA11"
+      },
+      {
+        "name": "ServiceA12"
+      },
+      {
+        "name": "ServiceA13"
+      },
+      {
+        "name": "ServiceA14"
+      },
+      {
+        "name": "ServiceA15"
+      },
+      {
+        "name": "ServiceA16"
+      },
+      {
+        "name": "ServiceA17"
+      },
+      {
+        "name": "ServiceA18"
+      },
+      {
+        "name": "ServiceA19"
+      },
+      {
+        "name": "ServiceA20"
+      },
+      {
+        "name": "ServiceA21"
+      },
+      {
+        "name": "ServiceA22"
+      },
+      {
+        "name": "ServiceA23"
+      },
+      {
+        "name": "ServiceA24"
+      },
+      {
+        "name": "ServiceA25"
+      },
+      {
+        "name": "ServiceA26"
+      },
+      {
+        "name": "ServiceA27"
+      },
+      {
+        "name": "ServiceA28"
+      },
+      {
+        "name": "ServiceA29"
+      },
+      {
+        "name": "ServiceA30"
+      },
+      {
+        "name": "ServiceA31"
+      },
+      {
+        "name": "ServiceA32"
+      },
+      {
+        "name": "ServiceA33"
+      },
+      {
+        "name": "ServiceA34"
+      },
+      {
+        "name": "ServiceA35"
+      },
+      {
+        "name": "ServiceA36"
+      },
+      {
+        "name": "ServiceA37"
+      },
+      {
+        "name": "ServiceA38"
+      },
+      {
+        "name": "ServiceA39"
+      },
+      {
+        "name": "ServiceA40"
+      },
+      {
+        "name": "ServiceA41"
+      },
+      {
+        "name": "ServiceA42"
+      },
+      {
+        "name": "ServiceA43"
+      },
+      {
+        "name": "ServiceA44"
+      },
+      {
+        "name": "ServiceA45"
+      },
+      {
+        "name": "ServiceA46"
+      },
+      {
+        "name": "ServiceA47"
+      },
+      {
+        "name": "ServiceA48"
+      },
+      {
+        "name": "ServiceA49"
+      }
+    ],
+    "seams": [
+      {
+        "name": "seamA0",
+        "participants": [
+          "ServiceA0",
+          "ServiceA1"
+        ]
+      },
+      {
+        "name": "seamA1",
+        "participants": [
+          "ServiceA1",
+          "ServiceA2"
+        ]
+      },
+      {
+        "name": "seamA2",
+        "participants": [
+          "ServiceA2",
+          "ServiceA3"
+        ]
+      },
+      {
+        "name": "seamA3",
+        "participants": [
+          "ServiceA3",
+          "ServiceA4"
+        ]
+      },
+      {
+        "name": "seamA4",
+        "participants": [
+          "ServiceA4",
+          "ServiceA5"
+        ]
+      },
+      {
+        "name": "seamA5",
+        "participants": [
+          "ServiceA5",
+          "ServiceA6"
+        ]
+      },
+      {
+        "name": "seamA6",
+        "participants": [
+          "ServiceA6",
+          "ServiceA7"
+        ]
+      },
+      {
+        "name": "seamA7",
+        "participants": [
+          "ServiceA7",
+          "ServiceA8"
+        ]
+      },
+      {
+        "name": "seamA8",
+        "participants": [
+          "ServiceA8",
+          "ServiceA9"
+        ]
+      },
+      {
+        "name": "seamA9",
+        "participants": [
+          "ServiceA9",
+          "ServiceA10"
+        ]
+      },
+      {
+        "name": "seamA10",
+        "participants": [
+          "ServiceA10",
+          "ServiceA11"
+        ]
+      },
+      {
+        "name": "seamA11",
+        "participants": [
+          "ServiceA11",
+          "ServiceA12"
+        ]
+      },
+      {
+        "name": "seamA12",
+        "participants": [
+          "ServiceA12",
+          "ServiceA13"
+        ]
+      },
+      {
+        "name": "seamA13",
+        "participants": [
+          "ServiceA13",
+          "ServiceA14"
+        ]
+      },
+      {
+        "name": "seamA14",
+        "participants": [
+          "ServiceA14",
+          "ServiceA15"
+        ]
+      },
+      {
+        "name": "seamA15",
+        "participants": [
+          "ServiceA15",
+          "ServiceA16"
+        ]
+      },
+      {
+        "name": "seamA16",
+        "participants": [
+          "ServiceA16",
+          "ServiceA17"
+        ]
+      },
+      {
+        "name": "seamA17",
+        "participants": [
+          "ServiceA17",
+          "ServiceA18"
+        ]
+      },
+      {
+        "name": "seamA18",
+        "participants": [
+          "ServiceA18",
+          "ServiceA19"
+        ]
+      },
+      {
+        "name": "seamA19",
+        "participants": [
+          "ServiceA19",
+          "ServiceA20"
+        ]
+      },
+      {
+        "name": "seamA20",
+        "participants": [
+          "ServiceA20",
+          "ServiceA21"
+        ]
+      },
+      {
+        "name": "seamA21",
+        "participants": [
+          "ServiceA21",
+          "ServiceA22"
+        ]
+      },
+      {
+        "name": "seamA22",
+        "participants": [
+          "ServiceA22",
+          "ServiceA23"
+        ]
+      },
+      {
+        "name": "seamA23",
+        "participants": [
+          "ServiceA23",
+          "ServiceA24"
+        ]
+      },
+      {
+        "name": "seamA24",
+        "participants": [
+          "ServiceA24",
+          "ServiceA25"
+        ]
+      },
+      {
+        "name": "seamA25",
+        "participants": [
+          "ServiceA25",
+          "ServiceA26"
+        ]
+      },
+      {
+        "name": "seamA26",
+        "participants": [
+          "ServiceA26",
+          "ServiceA27"
+        ]
+      },
+      {
+        "name": "seamA27",
+        "participants": [
+          "ServiceA27",
+          "ServiceA28"
+        ]
+      },
+      {
+        "name": "seamA28",
+        "participants": [
+          "ServiceA28",
+          "ServiceA29"
+        ]
+      },
+      {
+        "name": "seamA29",
+        "participants": [
+          "ServiceA29",
+          "ServiceA30"
+        ]
+      },
+      {
+        "name": "seamA30",
+        "participants": [
+          "ServiceA30",
+          "ServiceA31"
+        ]
+      },
+      {
+        "name": "seamA31",
+        "participants": [
+          "ServiceA31",
+          "ServiceA32"
+        ]
+      },
+      {
+        "name": "seamA32",
+        "participants": [
+          "ServiceA32",
+          "ServiceA33"
+        ]
+      },
+      {
+        "name": "seamA33",
+        "participants": [
+          "ServiceA33",
+          "ServiceA34"
+        ]
+      },
+      {
+        "name": "seamA34",
+        "participants": [
+          "ServiceA34",
+          "ServiceA35"
+        ]
+      },
+      {
+        "name": "seamA35",
+        "participants": [
+          "ServiceA35",
+          "ServiceA36"
+        ]
+      },
+      {
+        "name": "seamA36",
+        "participants": [
+          "ServiceA36",
+          "ServiceA37"
+        ]
+      },
+      {
+        "name": "seamA37",
+        "participants": [
+          "ServiceA37",
+          "ServiceA38"
+        ]
+      },
+      {
+        "name": "seamA38",
+        "participants": [
+          "ServiceA38",
+          "ServiceA39"
+        ]
+      },
+      {
+        "name": "seamA39",
+        "participants": [
+          "ServiceA39",
+          "ServiceA40"
+        ]
+      },
+      {
+        "name": "seamA40",
+        "participants": [
+          "ServiceA40",
+          "ServiceA41"
+        ]
+      },
+      {
+        "name": "seamA41",
+        "participants": [
+          "ServiceA41",
+          "ServiceA42"
+        ]
+      },
+      {
+        "name": "seamA42",
+        "participants": [
+          "ServiceA42",
+          "ServiceA43"
+        ]
+      },
+      {
+        "name": "seamA43",
+        "participants": [
+          "ServiceA43",
+          "ServiceA44"
+        ]
+      },
+      {
+        "name": "seamA44",
+        "participants": [
+          "ServiceA44",
+          "ServiceA45"
+        ]
+      },
+      {
+        "name": "seamA45",
+        "participants": [
+          "ServiceA45",
+          "ServiceA46"
+        ]
+      },
+      {
+        "name": "seamA46",
+        "participants": [
+          "ServiceA46",
+          "ServiceA47"
+        ]
+      },
+      {
+        "name": "seamA47",
+        "participants": [
+          "ServiceA47",
+          "ServiceA48"
+        ]
+      },
+      {
+        "name": "seamA48",
+        "participants": [
+          "ServiceA48",
+          "ServiceA49"
+        ]
+      },
+      {
+        "name": "seamA49",
+        "participants": [
+          "ServiceA49",
+          "ServiceA0"
+        ]
+      },
+      {
+        "name": "seamA50",
+        "participants": [
+          "ServiceA0",
+          "ServiceA1"
+        ]
+      },
+      {
+        "name": "seamA51",
+        "participants": [
+          "ServiceA1",
+          "ServiceA2"
+        ]
+      },
+      {
+        "name": "seamA52",
+        "participants": [
+          "ServiceA2",
+          "ServiceA3"
+        ]
+      },
+      {
+        "name": "seamA53",
+        "participants": [
+          "ServiceA3",
+          "ServiceA4"
+        ]
+      },
+      {
+        "name": "seamA54",
+        "participants": [
+          "ServiceA4",
+          "ServiceA5"
+        ]
+      },
+      {
+        "name": "seamA55",
+        "participants": [
+          "ServiceA5",
+          "ServiceA6"
+        ]
+      },
+      {
+        "name": "seamA56",
+        "participants": [
+          "ServiceA6",
+          "ServiceA7"
+        ]
+      },
+      {
+        "name": "seamA57",
+        "participants": [
+          "ServiceA7",
+          "ServiceA8"
+        ]
+      },
+      {
+        "name": "seamA58",
+        "participants": [
+          "ServiceA8",
+          "ServiceA9"
+        ]
+      },
+      {
+        "name": "seamA59",
+        "participants": [
+          "ServiceA9",
+          "ServiceA10"
+        ]
+      },
+      {
+        "name": "seamA60",
+        "participants": [
+          "ServiceA10",
+          "ServiceA11"
+        ]
+      },
+      {
+        "name": "seamA61",
+        "participants": [
+          "ServiceA11",
+          "ServiceA12"
+        ]
+      },
+      {
+        "name": "seamA62",
+        "participants": [
+          "ServiceA12",
+          "ServiceA13"
+        ]
+      },
+      {
+        "name": "seamA63",
+        "participants": [
+          "ServiceA13",
+          "ServiceA14"
+        ]
+      },
+      {
+        "name": "seamA64",
+        "participants": [
+          "ServiceA14",
+          "ServiceA15"
+        ]
+      },
+      {
+        "name": "seamA65",
+        "participants": [
+          "ServiceA15",
+          "ServiceA16"
+        ]
+      },
+      {
+        "name": "seamA66",
+        "participants": [
+          "ServiceA16",
+          "ServiceA17"
+        ]
+      },
+      {
+        "name": "seamA67",
+        "participants": [
+          "ServiceA17",
+          "ServiceA18"
+        ]
+      },
+      {
+        "name": "seamA68",
+        "participants": [
+          "ServiceA18",
+          "ServiceA19"
+        ]
+      },
+      {
+        "name": "seamA69",
+        "participants": [
+          "ServiceA19",
+          "ServiceA20"
+        ]
+      },
+      {
+        "name": "seamA70",
+        "participants": [
+          "ServiceA20",
+          "ServiceA21"
+        ]
+      },
+      {
+        "name": "seamA71",
+        "participants": [
+          "ServiceA21",
+          "ServiceA22"
+        ]
+      },
+      {
+        "name": "seamA72",
+        "participants": [
+          "ServiceA22",
+          "ServiceA23"
+        ]
+      },
+      {
+        "name": "seamA73",
+        "participants": [
+          "ServiceA23",
+          "ServiceA24"
+        ]
+      },
+      {
+        "name": "seamA74",
+        "participants": [
+          "ServiceA24",
+          "ServiceA25"
+        ]
+      },
+      {
+        "name": "seamA75",
+        "participants": [
+          "ServiceA25",
+          "ServiceA26"
+        ]
+      },
+      {
+        "name": "seamA76",
+        "participants": [
+          "ServiceA26",
+          "ServiceA27"
+        ]
+      },
+      {
+        "name": "seamA77",
+        "participants": [
+          "ServiceA27",
+          "ServiceA28"
+        ]
+      },
+      {
+        "name": "seamA78",
+        "participants": [
+          "ServiceA28",
+          "ServiceA29"
+        ]
+      },
+      {
+        "name": "seamA79",
+        "participants": [
+          "ServiceA29",
+          "ServiceA30"
+        ]
+      },
+      {
+        "name": "seamA80",
+        "participants": [
+          "ServiceA30",
+          "ServiceA31"
+        ]
+      },
+      {
+        "name": "seamA81",
+        "participants": [
+          "ServiceA31",
+          "ServiceA32"
+        ]
+      },
+      {
+        "name": "seamA82",
+        "participants": [
+          "ServiceA32",
+          "ServiceA33"
+        ]
+      },
+      {
+        "name": "seamA83",
+        "participants": [
+          "ServiceA33",
+          "ServiceA34"
+        ]
+      },
+      {
+        "name": "seamA84",
+        "participants": [
+          "ServiceA34",
+          "ServiceA35"
+        ]
+      },
+      {
+        "name": "seamA85",
+        "participants": [
+          "ServiceA35",
+          "ServiceA36"
+        ]
+      },
+      {
+        "name": "seamA86",
+        "participants": [
+          "ServiceA36",
+          "ServiceA37"
+        ]
+      },
+      {
+        "name": "seamA87",
+        "participants": [
+          "ServiceA37",
+          "ServiceA38"
+        ]
+      },
+      {
+        "name": "seamA88",
+        "participants": [
+          "ServiceA38",
+          "ServiceA39"
+        ]
+      },
+      {
+        "name": "seamA89",
+        "participants": [
+          "ServiceA39",
+          "ServiceA40"
+        ]
+      },
+      {
+        "name": "seamA90",
+        "participants": [
+          "ServiceA40",
+          "ServiceA41"
+        ]
+      },
+      {
+        "name": "seamA91",
+        "participants": [
+          "ServiceA41",
+          "ServiceA42"
+        ]
+      },
+      {
+        "name": "seamA92",
+        "participants": [
+          "ServiceA42",
+          "ServiceA43"
+        ]
+      },
+      {
+        "name": "seamA93",
+        "participants": [
+          "ServiceA43",
+          "ServiceA44"
+        ]
+      },
+      {
+        "name": "seamA94",
+        "participants": [
+          "ServiceA44",
+          "ServiceA45"
+        ]
+      },
+      {
+        "name": "seamA95",
+        "participants": [
+          "ServiceA45",
+          "ServiceA46"
+        ]
+      },
+      {
+        "name": "seamA96",
+        "participants": [
+          "ServiceA46",
+          "ServiceA47"
+        ]
+      },
+      {
+        "name": "seamA97",
+        "participants": [
+          "ServiceA47",
+          "ServiceA48"
+        ]
+      },
+      {
+        "name": "seamA98",
+        "participants": [
+          "ServiceA48",
+          "ServiceA49"
+        ]
+      },
+      {
+        "name": "seamA99",
+        "participants": [
+          "ServiceA49",
+          "ServiceA0"
+        ]
+      }
+    ]
+  },
+  "planB": {
+    "aiId": "AI-Beta",
+    "approach": "An alternative large-scale architecture.",
+    "components": [
+      {
+        "name": "ServiceB0"
+      },
+      {
+        "name": "ServiceB1"
+      },
+      {
+        "name": "ServiceB2"
+      },
+      {
+        "name": "ServiceB3"
+      },
+      {
+        "name": "ServiceB4"
+      },
+      {
+        "name": "ServiceB5"
+      },
+      {
+        "name": "ServiceB6"
+      },
+      {
+        "name": "ServiceB7"
+      },
+      {
+        "name": "ServiceB8"
+      },
+      {
+        "name": "ServiceB9"
+      },
+      {
+        "name": "ServiceB10"
+      },
+      {
+        "name": "ServiceB11"
+      },
+      {
+        "name": "ServiceB12"
+      },
+      {
+        "name": "ServiceB13"
+      },
+      {
+        "name": "ServiceB14"
+      },
+      {
+        "name": "ServiceB15"
+      },
+      {
+        "name": "ServiceB16"
+      },
+      {
+        "name": "ServiceB17"
+      },
+      {
+        "name": "ServiceB18"
+      },
+      {
+        "name": "ServiceB19"
+      },
+      {
+        "name": "ServiceB20"
+      },
+      {
+        "name": "ServiceB21"
+      },
+      {
+        "name": "ServiceB22"
+      },
+      {
+        "name": "ServiceB23"
+      },
+      {
+        "name": "ServiceB24"
+      },
+      {
+        "name": "ServiceB25"
+      },
+      {
+        "name": "ServiceB26"
+      },
+      {
+        "name": "ServiceB27"
+      },
+      {
+        "name": "ServiceB28"
+      },
+      {
+        "name": "ServiceB29"
+      },
+      {
+        "name": "ServiceB30"
+      },
+      {
+        "name": "ServiceB31"
+      },
+      {
+        "name": "ServiceB32"
+      },
+      {
+        "name": "ServiceB33"
+      },
+      {
+        "name": "ServiceB34"
+      },
+      {
+        "name": "ServiceB35"
+      },
+      {
+        "name": "ServiceB36"
+      },
+      {
+        "name": "ServiceB37"
+      },
+      {
+        "name": "ServiceB38"
+      },
+      {
+        "name": "ServiceB39"
+      },
+      {
+        "name": "ServiceB40"
+      },
+      {
+        "name": "ServiceB41"
+      },
+      {
+        "name": "ServiceB42"
+      },
+      {
+        "name": "ServiceB43"
+      },
+      {
+        "name": "ServiceB44"
+      },
+      {
+        "name": "ServiceB45"
+      },
+      {
+        "name": "ServiceB46"
+      },
+      {
+        "name": "ServiceB47"
+      },
+      {
+        "name": "ServiceB48"
+      },
+      {
+        "name": "ServiceB49"
+      }
+    ],
+    "seams": [
+      {
+        "name": "seamB0",
+        "participants": [
+          "ServiceB0",
+          "ServiceB1"
+        ]
+      },
+      {
+        "name": "seamB1",
+        "participants": [
+          "ServiceB1",
+          "ServiceB2"
+        ]
+      },
+      {
+        "name": "seamB2",
+        "participants": [
+          "ServiceB2",
+          "ServiceB3"
+        ]
+      },
+      {
+        "name": "seamB3",
+        "participants": [
+          "ServiceB3",
+          "ServiceB4"
+        ]
+      },
+      {
+        "name": "seamB4",
+        "participants": [
+          "ServiceB4",
+          "ServiceB5"
+        ]
+      },
+      {
+        "name": "seamB5",
+        "participants": [
+          "ServiceB5",
+          "ServiceB6"
+        ]
+      },
+      {
+        "name": "seamB6",
+        "participants": [
+          "ServiceB6",
+          "ServiceB7"
+        ]
+      },
+      {
+        "name": "seamB7",
+        "participants": [
+          "ServiceB7",
+          "ServiceB8"
+        ]
+      },
+      {
+        "name": "seamB8",
+        "participants": [
+          "ServiceB8",
+          "ServiceB9"
+        ]
+      },
+      {
+        "name": "seamB9",
+        "participants": [
+          "ServiceB9",
+          "ServiceB10"
+        ]
+      },
+      {
+        "name": "seamB10",
+        "participants": [
+          "ServiceB10",
+          "ServiceB11"
+        ]
+      },
+      {
+        "name": "seamB11",
+        "participants": [
+          "ServiceB11",
+          "ServiceB12"
+        ]
+      },
+      {
+        "name": "seamB12",
+        "participants": [
+          "ServiceB12",
+          "ServiceB13"
+        ]
+      },
+      {
+        "name": "seamB13",
+        "participants": [
+          "ServiceB13",
+          "ServiceB14"
+        ]
+      },
+      {
+        "name": "seamB14",
+        "participants": [
+          "ServiceB14",
+          "ServiceB15"
+        ]
+      },
+      {
+        "name": "seamB15",
+        "participants": [
+          "ServiceB15",
+          "ServiceB16"
+        ]
+      },
+      {
+        "name": "seamB16",
+        "participants": [
+          "ServiceB16",
+          "ServiceB17"
+        ]
+      },
+      {
+        "name": "seamB17",
+        "participants": [
+          "ServiceB17",
+          "ServiceB18"
+        ]
+      },
+      {
+        "name": "seamB18",
+        "participants": [
+          "ServiceB18",
+          "ServiceB19"
+        ]
+      },
+      {
+        "name": "seamB19",
+        "participants": [
+          "ServiceB19",
+          "ServiceB20"
+        ]
+      },
+      {
+        "name": "seamB20",
+        "participants": [
+          "ServiceB20",
+          "ServiceB21"
+        ]
+      },
+      {
+        "name": "seamB21",
+        "participants": [
+          "ServiceB21",
+          "ServiceB22"
+        ]
+      },
+      {
+        "name": "seamB22",
+        "participants": [
+          "ServiceB22",
+          "ServiceB23"
+        ]
+      },
+      {
+        "name": "seamB23",
+        "participants": [
+          "ServiceB23",
+          "ServiceB24"
+        ]
+      },
+      {
+        "name": "seamB24",
+        "participants": [
+          "ServiceB24",
+          "ServiceB25"
+        ]
+      },
+      {
+        "name": "seamB25",
+        "participants": [
+          "ServiceB25",
+          "ServiceB26"
+        ]
+      },
+      {
+        "name": "seamB26",
+        "participants": [
+          "ServiceB26",
+          "ServiceB27"
+        ]
+      },
+      {
+        "name": "seamB27",
+        "participants": [
+          "ServiceB27",
+          "ServiceB28"
+        ]
+      },
+      {
+        "name": "seamB28",
+        "participants": [
+          "ServiceB28",
+          "ServiceB29"
+        ]
+      },
+      {
+        "name": "seamB29",
+        "participants": [
+          "ServiceB29",
+          "ServiceB30"
+        ]
+      },
+      {
+        "name": "seamB30",
+        "participants": [
+          "ServiceB30",
+          "ServiceB31"
+        ]
+      },
+      {
+        "name": "seamB31",
+        "participants": [
+          "ServiceB31",
+          "ServiceB32"
+        ]
+      },
+      {
+        "name": "seamB32",
+        "participants": [
+          "ServiceB32",
+          "ServiceB33"
+        ]
+      },
+      {
+        "name": "seamB33",
+        "participants": [
+          "ServiceB33",
+          "ServiceB34"
+        ]
+      },
+      {
+        "name": "seamB34",
+        "participants": [
+          "ServiceB34",
+          "ServiceB35"
+        ]
+      },
+      {
+        "name": "seamB35",
+        "participants": [
+          "ServiceB35",
+          "ServiceB36"
+        ]
+      },
+      {
+        "name": "seamB36",
+        "participants": [
+          "ServiceB36",
+          "ServiceB37"
+        ]
+      },
+      {
+        "name": "seamB37",
+        "participants": [
+          "ServiceB37",
+          "ServiceB38"
+        ]
+      },
+      {
+        "name": "seamB38",
+        "participants": [
+          "ServiceB38",
+          "ServiceB39"
+        ]
+      },
+      {
+        "name": "seamB39",
+        "participants": [
+          "ServiceB39",
+          "ServiceB40"
+        ]
+      },
+      {
+        "name": "seamB40",
+        "participants": [
+          "ServiceB40",
+          "ServiceB41"
+        ]
+      },
+      {
+        "name": "seamB41",
+        "participants": [
+          "ServiceB41",
+          "ServiceB42"
+        ]
+      },
+      {
+        "name": "seamB42",
+        "participants": [
+          "ServiceB42",
+          "ServiceB43"
+        ]
+      },
+      {
+        "name": "seamB43",
+        "participants": [
+          "ServiceB43",
+          "ServiceB44"
+        ]
+      },
+      {
+        "name": "seamB44",
+        "participants": [
+          "ServiceB44",
+          "ServiceB45"
+        ]
+      },
+      {
+        "name": "seamB45",
+        "participants": [
+          "ServiceB45",
+          "ServiceB46"
+        ]
+      },
+      {
+        "name": "seamB46",
+        "participants": [
+          "ServiceB46",
+          "ServiceB47"
+        ]
+      },
+      {
+        "name": "seamB47",
+        "participants": [
+          "ServiceB47",
+          "ServiceB48"
+        ]
+      },
+      {
+        "name": "seamB48",
+        "participants": [
+          "ServiceB48",
+          "ServiceB49"
+        ]
+      },
+      {
+        "name": "seamB49",
+        "participants": [
+          "ServiceB49",
+          "ServiceB0"
+        ]
+      },
+      {
+        "name": "seamB50",
+        "participants": [
+          "ServiceB0",
+          "ServiceB1"
+        ]
+      },
+      {
+        "name": "seamB51",
+        "participants": [
+          "ServiceB1",
+          "ServiceB2"
+        ]
+      },
+      {
+        "name": "seamB52",
+        "participants": [
+          "ServiceB2",
+          "ServiceB3"
+        ]
+      },
+      {
+        "name": "seamB53",
+        "participants": [
+          "ServiceB3",
+          "ServiceB4"
+        ]
+      },
+      {
+        "name": "seamB54",
+        "participants": [
+          "ServiceB4",
+          "ServiceB5"
+        ]
+      },
+      {
+        "name": "seamB55",
+        "participants": [
+          "ServiceB5",
+          "ServiceB6"
+        ]
+      },
+      {
+        "name": "seamB56",
+        "participants": [
+          "ServiceB6",
+          "ServiceB7"
+        ]
+      },
+      {
+        "name": "seamB57",
+        "participants": [
+          "ServiceB7",
+          "ServiceB8"
+        ]
+      },
+      {
+        "name": "seamB58",
+        "participants": [
+          "ServiceB8",
+          "ServiceB9"
+        ]
+      },
+      {
+        "name": "seamB59",
+        "participants": [
+          "ServiceB9",
+          "ServiceB10"
+        ]
+      },
+      {
+        "name": "seamB60",
+        "participants": [
+          "ServiceB10",
+          "ServiceB11"
+        ]
+      },
+      {
+        "name": "seamB61",
+        "participants": [
+          "ServiceB11",
+          "ServiceB12"
+        ]
+      },
+      {
+        "name": "seamB62",
+        "participants": [
+          "ServiceB12",
+          "ServiceB13"
+        ]
+      },
+      {
+        "name": "seamB63",
+        "participants": [
+          "ServiceB13",
+          "ServiceB14"
+        ]
+      },
+      {
+        "name": "seamB64",
+        "participants": [
+          "ServiceB14",
+          "ServiceB15"
+        ]
+      },
+      {
+        "name": "seamB65",
+        "participants": [
+          "ServiceB15",
+          "ServiceB16"
+        ]
+      },
+      {
+        "name": "seamB66",
+        "participants": [
+          "ServiceB16",
+          "ServiceB17"
+        ]
+      },
+      {
+        "name": "seamB67",
+        "participants": [
+          "ServiceB17",
+          "ServiceB18"
+        ]
+      },
+      {
+        "name": "seamB68",
+        "participants": [
+          "ServiceB18",
+          "ServiceB19"
+        ]
+      },
+      {
+        "name": "seamB69",
+        "participants": [
+          "ServiceB19",
+          "ServiceB20"
+        ]
+      },
+      {
+        "name": "seamB70",
+        "participants": [
+          "ServiceB20",
+          "ServiceB21"
+        ]
+      },
+      {
+        "name": "seamB71",
+        "participants": [
+          "ServiceB21",
+          "ServiceB22"
+        ]
+      },
+      {
+        "name": "seamB72",
+        "participants": [
+          "ServiceB22",
+          "ServiceB23"
+        ]
+      },
+      {
+        "name": "seamB73",
+        "participants": [
+          "ServiceB23",
+          "ServiceB24"
+        ]
+      },
+      {
+        "name": "seamB74",
+        "participants": [
+          "ServiceB24",
+          "ServiceB25"
+        ]
+      },
+      {
+        "name": "seamB75",
+        "participants": [
+          "ServiceB25",
+          "ServiceB26"
+        ]
+      },
+      {
+        "name": "seamB76",
+        "participants": [
+          "ServiceB26",
+          "ServiceB27"
+        ]
+      },
+      {
+        "name": "seamB77",
+        "participants": [
+          "ServiceB27",
+          "ServiceB28"
+        ]
+      },
+      {
+        "name": "seamB78",
+        "participants": [
+          "ServiceB28",
+          "ServiceB29"
+        ]
+      },
+      {
+        "name": "seamB79",
+        "participants": [
+          "ServiceB29",
+          "ServiceB30"
+        ]
+      },
+      {
+        "name": "seamB80",
+        "participants": [
+          "ServiceB30",
+          "ServiceB31"
+        ]
+      },
+      {
+        "name": "seamB81",
+        "participants": [
+          "ServiceB31",
+          "ServiceB32"
+        ]
+      },
+      {
+        "name": "seamB82",
+        "participants": [
+          "ServiceB32",
+          "ServiceB33"
+        ]
+      },
+      {
+        "name": "seamB83",
+        "participants": [
+          "ServiceB33",
+          "ServiceB34"
+        ]
+      },
+      {
+        "name": "seamB84",
+        "participants": [
+          "ServiceB34",
+          "ServiceB35"
+        ]
+      },
+      {
+        "name": "seamB85",
+        "participants": [
+          "ServiceB35",
+          "ServiceB36"
+        ]
+      },
+      {
+        "name": "seamB86",
+        "participants": [
+          "ServiceB36",
+          "ServiceB37"
+        ]
+      },
+      {
+        "name": "seamB87",
+        "participants": [
+          "ServiceB37",
+          "ServiceB38"
+        ]
+      },
+      {
+        "name": "seamB88",
+        "participants": [
+          "ServiceB38",
+          "ServiceB39"
+        ]
+      },
+      {
+        "name": "seamB89",
+        "participants": [
+          "ServiceB39",
+          "ServiceB40"
+        ]
+      },
+      {
+        "name": "seamB90",
+        "participants": [
+          "ServiceB40",
+          "ServiceB41"
+        ]
+      },
+      {
+        "name": "seamB91",
+        "participants": [
+          "ServiceB41",
+          "ServiceB42"
+        ]
+      },
+      {
+        "name": "seamB92",
+        "participants": [
+          "ServiceB42",
+          "ServiceB43"
+        ]
+      },
+      {
+        "name": "seamB93",
+        "participants": [
+          "ServiceB43",
+          "ServiceB44"
+        ]
+      },
+      {
+        "name": "seamB94",
+        "participants": [
+          "ServiceB44",
+          "ServiceB45"
+        ]
+      },
+      {
+        "name": "seamB95",
+        "participants": [
+          "ServiceB45",
+          "ServiceB46"
+        ]
+      },
+      {
+        "name": "seamB96",
+        "participants": [
+          "ServiceB46",
+          "ServiceB47"
+        ]
+      },
+      {
+        "name": "seamB97",
+        "participants": [
+          "ServiceB47",
+          "ServiceB48"
+        ]
+      },
+      {
+        "name": "seamB98",
+        "participants": [
+          "ServiceB48",
+          "ServiceB49"
+        ]
+      },
+      {
+        "name": "seamB99",
+        "participants": [
+          "ServiceB49",
+          "ServiceB0"
+        ]
+      }
+    ]
+  }
+}

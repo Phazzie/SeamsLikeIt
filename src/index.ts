@@ -32,6 +32,13 @@ import { regenerateComponentTool } from './tools/regenerate-component.js';
 import { analyzeForRegenerationTool } from './tools/analyze-for-regeneration.js';
 import { evolveContractTool } from './tools/evolve-contract.js';
 import { orchestrateParallelTool } from './tools/orchestrate-parallel.js';
+import { 
+  proposePlanTool,
+  comparePlansTool,
+  steelmanArgumentTool,
+  synthesizePlansTool
+} from './tools/collaboration/index.js';
+import { structuredGenerationTool } from './tools/collaboration/structured-generation.js';
 
 const server = new Server(
   {
@@ -232,6 +239,126 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['requirements'],
         },
       },
+      {
+        name: 'seam_propose_plan',
+        description: 'AI independently analyzes requirements and proposes a complete plan with tasks, architecture, and seams',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            requirements: {
+              type: 'string',
+              description: 'Plain English description of what needs to be built',
+            },
+            aiId: {
+              type: 'string',
+              description: 'Identifier for the AI creating this plan (e.g., "Claude", "Gemini")',
+            },
+            domain: {
+              type: 'string',
+              description: 'Optional domain context (healthcare, ecommerce, fintech, etc.)',
+            },
+          },
+          required: ['requirements'],
+        },
+      },
+      {
+        name: 'seam_compare_plans',
+        description: 'Compare two AI-generated plans and calculate their agreement level',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            planA: {
+              type: 'object',
+              description: 'First plan to compare',
+            },
+            planB: {
+              type: 'object',
+              description: 'Second plan to compare',
+            },
+          },
+          required: ['planA', 'planB'],
+        },
+      },
+      {
+        name: 'seam_steelman_argument',
+        description: 'Generate a steelman argument where an AI argues why the OTHER AI\'s plan is better',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            targetPlanId: {
+              type: 'string',
+              description: 'ID of the plan to argue for',
+            },
+            targetPlan: {
+              type: 'object',
+              description: 'The plan to create a steelman argument for',
+            },
+            arguingAiId: {
+              type: 'string',
+              description: 'ID of the AI making the argument',
+            },
+            focusAreas: {
+              type: 'array',
+              description: 'Specific areas of disagreement to focus on',
+              items: { type: 'string' },
+            },
+          },
+          required: ['targetPlanId', 'targetPlan', 'arguingAiId'],
+        },
+      },
+      {
+        name: 'seam_synthesize_plans',
+        description: 'Merge the best ideas from two plans into a synthesized plan with coherence assessment',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            planA: {
+              type: 'object',
+              description: 'First plan to synthesize',
+            },
+            planB: {
+              type: 'object',
+              description: 'Second plan to synthesize',
+            },
+            steelmanA: {
+              type: 'object',
+              description: 'Steelman argument for plan A',
+            },
+            steelmanB: {
+              type: 'object',
+              description: 'Steelman argument for plan B',
+            },
+            synthesisStrategy: {
+              type: 'string',
+              enum: ['MERGE', 'HYBRID', 'LAYERED', 'PHASE_BASED'],
+              description: 'Strategy for synthesis',
+            },
+          },
+          required: ['planA', 'planB'],
+        },
+      },
+      {
+        name: 'seam_structured_generation',
+        description: 'Generate a ProposedPlan in a structured, multi-step way to improve reliability.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            requirements: {
+              type: 'string',
+              description: 'Plain English description of what needs to be built',
+            },
+            aiId: {
+              type: 'string',
+              description: 'Identifier for the AI creating this plan (e.g., "Claude", "Gemini")',
+            },
+            domain: {
+              type: 'string',
+              description: 'Optional domain context (healthcare, ecommerce, fintech, etc.)',
+            },
+          },
+          required: ['requirements'],
+        },
+      },
     ],
   };
 });
@@ -268,6 +395,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case 'seam_orchestrate_parallel':
         return await orchestrateParallelTool(args);
       
+      case 'seam_propose_plan':
+        return await proposePlanTool(args);
+      
+      case 'seam_compare_plans':
+        return await comparePlansTool(args);
+      
+      case 'seam_steelman_argument':
+        return await steelmanArgumentTool(args);
+      
+      case 'seam_synthesize_plans':
+        return await synthesizePlansTool(args);
+      
+      case 'seam_structured_generation':
+        return await structuredGenerationTool(args);
+      
       default:
         throw new Error(`Unknown tool: ${name}`);
     }
@@ -293,3 +435,5 @@ main().catch((error) => {
   console.error('Fatal error:', error);
   process.exit(1);
 });
+
+export { server, CallToolRequestSchema };

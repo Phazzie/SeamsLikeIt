@@ -40,7 +40,7 @@ app.get('/health', (_req, res) => {
   res.json({ 
     status: 'healthy', 
     tools: 9,
-    model: process.env.AI_MODEL || 'gpt-4.1-mini-2025-04-1'
+    model: process.env.AI_MODEL || 'gpt-4.1-mini'
   });
 });
 
@@ -97,6 +97,7 @@ app.post('/tools/:toolName', authenticate, async (req, res) => {
           success: true, 
           data: result.content[0].text
         });
+        return;
       }
     } else {
       res.json({ success: false, error: 'No content returned' });

@@ -1,0 +1,39 @@
+{
+  "id": "edge-005",
+  "name": "Vague Requirements with Missing Context",
+  "requirements": "We need a system to handle customer data.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "Assume this is for a marketing context and design a simple CRM.",
+    "expectedComponents": [
+      {"name": "ContactService"},
+      {"name": "LeadTrackingService"},
+      {"name": "CampaignService"}
+    ],
+    "expectedSeams": [],
+    "philosophyNotes": "'Customer data' often implies a sales or marketing context. This is a reasonable assumption to start with."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "Assume this is for a support context and design a helpdesk system.",
+    "expectedComponents": [
+      {"name": "CustomerProfileService"},
+      {"name": "TicketingService"},
+      {"name": "KnowledgeBaseService"}
+    ],
+    "expectedSeams": [],
+    "philosophyNotes": "'Handling customer data' could also mean managing support requests and history. This is another valid interpretation."
+  },
+  "expectedAgreement": 10,
+  "expectedConflicts": ["MISSING_CONTEXT", "AMBIGUOUS_REQUIREMENTS"],
+  "synthesisExpectation": {
+    "viable": false,
+    "recommendedStrategy": "REQUEST_CLARIFICATION",
+    "keyDecisions": [
+      "The system should detect that the requirements are too vague to produce a meaningful architecture.",
+      "Both plans are based on assumptions that cannot be validated.",
+      "The synthesis should fail, and the output should be a series of clarifying questions, such as: 'What is the primary goal of handling customer data? (e.g., Marketing, Sales, Support, Billing). What specific actions will users perform with this data?'"
+    ],
+    "warnings": ["The AI should avoid inventing a complex architecture based on a guess. The primary goal is to ask for more information."]
+  }
+}

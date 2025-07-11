@@ -1,0 +1,60 @@
+{
+  "id": "scenario-002",
+  "name": "Patient Appointment Scheduling System",
+  "requirements": "Develop a system for patients to schedule appointments with doctors. The system must handle doctors in different timezones and show availability in the patient's local time. It needs to send email and SMS reminders 24 hours before the appointment. Doctors must be able to block out times on their calendar.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A service-oriented approach with a clear separation between core scheduling logic and external communication.",
+    "expectedComponents": [
+      {"name": "PatientService", "responsibilities": ["Patient profile management"]},
+      {"name": "ProviderService", "responsibilities": ["Doctor profiles", "Managing availability and blocked times"]},
+      {"name": "SchedulingService", "responsibilities": ["Booking appointments", "Timezone conversion", "Availability checks"]},
+      {"name": "NotificationService", "responsibilities": ["Sending email reminders", "Sending SMS reminders"]}
+    ],
+    "expectedSeams": [
+      {"name": "check-availability", "type": "query"},
+      {"name": "book-appointment", "type": "transactional"},
+      {"name": "send-reminder", "type": "event-driven"}
+    ],
+    "philosophyNotes": "By isolating notifications, we can easily swap providers (e.g., Twilio for SMS, SendGrid for email) or add new channels (like push notifications) without touching the core scheduling logic. This is a robust, decoupled design."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "A more integrated approach where the scheduling service handles its own notifications, treating them as a direct outcome of an appointment.",
+    "expectedComponents": [
+      {"name": "PatientManagement", "responsibilities": ["Patient profiles and history"]},
+      {"name": "CalendarManagement", "responsibilities": ["Doctor schedules, availability, and personal calendars"]},
+      {"name": "AppointmentScheduler", "responsibilities": ["Handles booking, timezone logic, and directly triggers email/SMS reminders via integrated SDKs"]}
+    ],
+    "expectedSeams": [
+      {"name": "fetch-schedule", "type": "query"},
+      {"name": "schedule-visit", "type": "workflow"},
+      {"name": "manage-calendar-blocks", "type": "transactional"}
+    ],
+    "philosophyNotes": "Notifications are an integral part of an appointment's lifecycle, not a separate domain. Integrating them simplifies the workflow and reduces the number of services to manage and deploy. It ensures reminders are transactionally tied to the appointment booking."
+  },
+  "expectedAgreement": 75,
+  "expectedConflicts": ["COMPONENT_BOUNDARIES", "RESPONSIBILITY_ASSIGNMENT"],
+  "steelmanPoints": {
+    "forPlanA": [
+      "The NotificationService could be reused by other parts of a larger healthcare platform (e.g., for billing alerts).",
+      "Failure of the SMS provider won't impact the ability to book appointments.",
+      "Allows for specialized notification logic, like handling user preferences for communication channels."
+    ],
+    "forPlanB": [
+      "Guarantees that a successful booking always queues the necessary reminders in the same transaction.",
+      "Lower infrastructure cost and complexity with fewer moving parts.",
+      "Simpler for developers to understand the end-to-end flow of an appointment."
+    ]
+  },
+  "synthesisExpectation": {
+    "viable": true,
+    "recommendedStrategy": "STEELMAN_AND_MERGE",
+    "keyDecisions": [
+      "Adopt Plan A's separate NotificationService, as its argument for reusability is strong in a growing platform.",
+      "However, the seam should be event-driven as Plan A suggests. The AppointmentScheduler will publish an 'AppointmentBooked' event, and the NotificationService will subscribe to it.",
+      "This provides the decoupling of Plan A with the transactional integrity of Plan B."
+    ],
+    "warnings": ["A simple API call from the scheduler to the notifier could create too tight a coupling."]
+  }
+}

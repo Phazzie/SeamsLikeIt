@@ -1,0 +1,36 @@
+{
+  "id": "edge-004",
+  "name": "Conflicting Requirements",
+  "requirements": "Build a secure document storage system. All documents must be end-to-end encrypted and completely inaccessible to the server. The system must also provide a feature for administrators to search the full text of all documents.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "Prioritize the end-to-end encryption requirement.",
+    "expectedComponents": [
+      {"name": "ClientSideEncryptionEngine"},
+      {"name": "EncryptedBlobStorageService"}
+    ],
+    "expectedSeams": [],
+    "philosophyNotes": "End-to-end encryption is a hard security requirement. If the server cannot access the documents, full-text search is impossible. This plan correctly implements the security requirement and implicitly rejects the search requirement."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "Prioritize the full-text search requirement.",
+    "expectedComponents": [
+      {"name": "DocumentUploadService"},
+      {"name": "FullTextSearchEngine"}
+    ],
+    "expectedSeams": [],
+    "philosophyNotes": "Full-text search requires the server to have access to the document content. This plan implements the search requirement, which means it cannot fulfill the end-to-end encryption requirement."
+  },
+  "expectedAgreement": 0,
+  "expectedConflicts": ["REQUIREMENT_CONFLICT"],
+  "synthesisExpectation": {
+    "viable": false,
+    "recommendedStrategy": "FLAG_AND_ESCALATE",
+    "keyDecisions": [
+      "The system must recognize that both plans are valid interpretations of one part of the requirements, but that the requirements themselves are mutually exclusive.",
+      "The synthesis should fail, and the output should clearly state: 'A conflict was detected in the requirements. End-to-end encryption and server-side full-text search are incompatible. Please clarify the priority.'"
+    ],
+    "warnings": ["The tool must not attempt to create a 'compromise' architecture that is both insecure and non-functional."]
+  }
+}

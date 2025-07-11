@@ -1,0 +1,61 @@
+{
+  "id": "complex-001",
+  "name": "Multi-Vendor Marketplace with Escrow",
+  "requirements": "Build a multi-vendor marketplace where sellers can list items and buyers can purchase them. A key feature is an escrow system: when a buyer pays, the money is held by the platform until the buyer confirms they have received the item. The system must also handle seller payouts and platform commissions.",
+  "rounds": [
+    {
+      "round": 1,
+      "focus": "Initial high-level architecture for core components.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "Domain-driven design with services for each major actor.",
+        "components": ["UserService", "ProductService", "OrderService", "PaymentService"]
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "Slightly different domain breakdown.",
+        "components": ["AccountService", "ListingService", "PurchaseService", "PayoutService"]
+      },
+      "synthesisExpectation": {
+        "strategy": "MERGE",
+        "outcome": "A unified list of components: UserService, ProductService, OrderService, PaymentService, PayoutService."
+      }
+    },
+    {
+      "round": 2,
+      "focus": "Detailed workflow for the escrow and payment process.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "A state machine within the OrderService to manage the escrow status (Pending -> Paid -> Shipped -> Confirmed -> Released).",
+        "seams": ["hold-payment", "release-payment"]
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "A dedicated EscrowService that is responsible for the entire lifecycle of the payment, separate from the order.",
+        "seams": ["create-escrow", "confirm-receipt", "process-payout"]
+      },
+      "synthesisExpectation": {
+        "strategy": "STEELMAN_AND_MERGE",
+        "outcome": "Adopt Plan B's dedicated EscrowService as it's a more robust and scalable pattern for handling the financial complexity. The OrderService will interact with the EscrowService."
+      }
+    },
+    {
+      "round": 3,
+      "focus": "Finalizing the data flow for commission calculation.",
+      "planA": {
+        "aiId": "AI-Alpha",
+        "approach": "The PayoutService calculates commission just before paying the seller.",
+        "dataFlow": "Order Total -> PayoutService -> Commission Calculation -> Final Payout"
+      },
+      "planB": {
+        "aiId": "AI-Beta",
+        "approach": "The OrderService calculates and records the commission at the time of sale.",
+        "dataFlow": "Order Total -> OrderService records commission -> PayoutService uses recorded value"
+      },
+      "synthesisExpectation": {
+        "strategy": "SELECT_BETTER",
+        "outcome": "Select Plan B. Calculating commission at the time of sale is less error-prone and provides a clearer financial record from the outset."
+      }
+    }
+  ]
+}

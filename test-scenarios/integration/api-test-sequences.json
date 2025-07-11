@@ -1,0 +1,80 @@
+[
+  {
+    "testId": "INTEGRATION_01_BASIC_WORKFLOW",
+    "description": "Tests the simple, end-to-end success path.",
+    "sequence": [
+      {
+        "step": 1,
+        "tool": "compare",
+        "input": {
+          "planA": "basic/scenario-001-bookstore.planA",
+          "planB": "basic/scenario-001-bookstore.planB"
+        },
+        "expected_output": {
+          "agreement": ">= 85",
+          "conflicts": ["COMPONENT_BOUNDARIES"]
+        }
+      },
+      {
+        "step": 2,
+        "tool": "synthesize",
+        "input": {
+          "comparisonResult": "output_of_step_1"
+        },
+        "expected_output": {
+          "strategy": "MERGE",
+          "componentCount": 4 
+        }
+      }
+    ]
+  },
+  {
+    "testId": "INTEGRATION_02_STEELMAN_WORKFLOW",
+    "description": "Tests the conflict resolution path involving the steelman tool.",
+    "sequence": [
+      {
+        "step": 1,
+        "tool": "compare",
+        "input": {
+          "planA": "basic/scenario-003-inventory.planA",
+          "planB": "basic/scenario-003-inventory.planB"
+        },
+        "expected_output": {
+          "agreement": "<= 70",
+          "conflicts": ["FUNDAMENTAL_PHILOSOPHY_MISMATCH"]
+        }
+      },
+      {
+        "step": 2,
+        "tool": "synthesize",
+        "input": {
+          "comparisonResult": "output_of_step_1"
+        },
+        "expected_output": {
+          "strategy": "RECOMMEND_STEELMAN"
+        }
+      },
+      {
+        "step": 3,
+        "tool": "steelman",
+        "input": {
+          "comparisonResult": "output_of_step_1"
+        },
+        "expected_output": {
+          "forPlanA": ["Provides a complete, auditable history"],
+          "forPlanB": ["Vastly simpler to implement"]
+        }
+      },
+      {
+        "step": 4,
+        "tool": "synthesize",
+        "input": {
+          "steelmanResult": "output_of_step_3"
+        },
+        "expected_output": {
+          "strategy": "PHASE_BASED"
+        }
+      }
+    ]
+  }
+]

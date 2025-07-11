@@ -1,0 +1,15 @@
+{
+  "id": "error-003",
+  "name": "Incorrect Data Types",
+  "description": "Tests if the system validates the data types of incoming fields. 'expectedComponents' should be an array, but is provided as a string.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A valid approach",
+    "expectedComponents": "This should be an array of strings, not a single string."
+  },
+  "planB": {
+    "aiId": "AI-Beta",
+    "approach": "A valid approach",
+    "expectedComponents": ["ComponentC", "ComponentD"]
+  }
+}

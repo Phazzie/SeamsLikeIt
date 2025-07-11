@@ -1,0 +1,43 @@
+{
+  "id": "edge-002",
+  "name": "Overly Complex Requirements",
+  "requirements": "Design a comprehensive enterprise resource planning (ERP) system for a multinational corporation. It must handle HR (payroll, hiring, reviews), Finance (accounting, invoicing, forecasting), Supply Chain (inventory, logistics, procurement), CRM (sales, marketing, support), and Project Management. Each sub-domain has at least 3-4 major functions that need to be modeled.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A fine-grained microservices approach, creating a separate service for almost every function mentioned.",
+    "expectedComponents": [
+      {"name": "PayrollService"}, {"name": "HiringService"}, {"name": "ReviewService"},
+      {"name": "AccountingService"}, {"name": "InvoicingService"}, {"name": "ForecastingService"},
+      {"name": "InventoryService"}, {"name": "LogisticsService"}, {"name": "ProcurementService"},
+      {"name": "SalesService"}, {"name": "MarketingService"}, {"name": "SupportService"},
+      {"name": "ProjectTrackingService"}, {"name": "TaskManagementService"}, {"name": "ResourceAllocationService"}
+    ],
+    "expectedSeams": [],
+    "philosophyNotes": "A direct, one-to-one mapping of functions to services provides the ultimate separation of concerns."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "A domain-oriented approach, grouping functions into larger, more coherent services representing the major business units.",
+    "expectedComponents": [
+      {"name": "HumanResourcesService"},
+      {"name": "FinancialsService"},
+      {"name": "SupplyChainService"},
+      {"name": "CustomerRelationshipService"},
+      {"name": "ProjectManagementService"}
+    ],
+    "expectedSeams": [],
+    "philosophyNotes": "Grouping by domain is a more realistic and manageable architecture. It reduces the sheer number of services and the complexity of inter-service communication."
+  },
+  "expectedAgreement": 50,
+  "expectedConflicts": ["EXCESSIVE_COMPONENT_COUNT", "GRANULARITY_MISMATCH"],
+  "synthesisExpectation": {
+    "viable": true,
+    "recommendedStrategy": "HIERARCHICAL_SYNTHESIS",
+    "keyDecisions": [
+      "Adopt Plan B's high-level domain services as the primary architectural pillars.",
+      "Treat Plan A's fine-grained services as sub-modules or internal components within the larger services defined by Plan B.",
+      "This creates a two-level hierarchy that manages complexity while still acknowledging the detailed functional breakdown."
+    ],
+    "warnings": ["The collaboration tool should detect when a proposed architecture exceeds a reasonable complexity threshold (e.g., >15 components) and suggest a consolidation strategy."]
+  }
+}

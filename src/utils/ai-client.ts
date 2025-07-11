@@ -1,10 +1,3 @@
-/**
- * AI Client for SDD Tools
- * 
- * This module handles AI interactions for the SDD MCP server.
- * Supports both OpenAI API and mock responses for development.
- */
-
 import { ContractResult } from '../types/sdd.js';
 import OpenAI from 'openai';
 
@@ -52,11 +45,11 @@ export class AIClient {
       // Ensure prompt contains "json" for response_format requirement
       const userPrompt = request.prompt.toLowerCase().includes('json') 
         ? request.prompt 
-        : `${request.prompt}\n\nRespond with valid JSON.`;
+        : `${request.prompt}\n\nRespond with valid JSON.`
 
       // Use OpenAI API with optimized parameters
       const completion = await this.openai.chat.completions.create({
-        model: process.env.AI_MODEL || 'gpt-4.1-mini-2025-04-1',
+        model: process.env.AI_MODEL || 'gpt-4.1-mini',
         messages: [
           ...(request.systemPrompt ? [{ role: 'system' as const, content: request.systemPrompt }] : []),
           { role: 'user' as const, content: userPrompt },
@@ -108,7 +101,7 @@ export class AIClient {
   private calculateCost(promptTokens: number, completionTokens: number, model: string): number {
     // Pricing as of Jan 2025 (per 1M tokens)
     const pricing: Record<string, { input: number; output: number }> = {
-      'gpt-4.1-mini-2025-04-1': { input: 0.15, output: 0.6 },
+      'gpt-4.1-mini': { input: 0.15, output: 0.6 },
       'gpt-4-1106-preview': { input: 10, output: 30 },
       'gpt-4': { input: 30, output: 60 },
       'gpt-3.5-turbo': { input: 0.5, output: 1.5 },

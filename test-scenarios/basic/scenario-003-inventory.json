@@ -1,0 +1,63 @@
+{
+  "id": "scenario-003",
+  "name": "Real-Time Inventory Management",
+  "requirements": "Design a system for real-time inventory management for a warehouse. It must track stock levels for thousands of products. When stock for a product drops below a certain threshold, an alert must be sent to the purchasing department. The system also needs to integrate with supplier APIs to get estimated restocking times.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "An event-sourcing architecture where every change to inventory is recorded as an immutable event (e.g., 'ItemsAdded', 'ItemsRemoved'). The current state is derived by replaying these events.",
+    "expectedComponents": [
+      {"name": "InventoryCommandService", "responsibilities": ["Receiving and validating commands like 'AdjustStock'"]},
+      {"name": "InventoryEventStore", "responsibilities": ["Storing the immutable log of all inventory events"]},
+      {"name": "InventoryQueryService", "responsibilities": ["Building and maintaining a real-time view of current stock levels for fast reads"]},
+      {"name": "AlertingService", "responsibilities": ["Subscribing to inventory events and triggering alerts"]},
+      {"name": "SupplierIntegrationService", "responsibilities": ["Communicating with external supplier APIs"]}
+    ],
+    "expectedSeams": [
+      {"name": "inventory-commands", "type": "cqrs-command"},
+      {"name": "inventory-events", "type": "event-stream"},
+      {"name": "stock-level-query", "type": "cqrs-query"}
+    ],
+    "philosophyNotes": "Event sourcing provides a perfect audit trail, which is critical for inventory. It avoids race conditions and locking issues common in traditional CRUD systems under high concurrency. We can rebuild the state at any point in time."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "A traditional, robust CRUD (Create, Read, Update, Delete) system using a relational database with transactions to ensure data integrity. Simpler to implement and understood by more developers.",
+    "expectedComponents": [
+      {"name": "ProductCatalog", "responsibilities": ["Stores product information"]},
+      {"name": "InventoryLedger", "responsibilities": ["A transactional database table holding the current stock count for each product"]},
+      {"name": "AlertingEngine", "responsibilities": ["Periodically scans the ledger for low-stock items and sends alerts"]},
+      {"name": "SupplierGateway", "responsibilities": ["Manages API calls to external suppliers"]}
+    ],
+    "expectedSeams": [
+      {"name": "update-stock", "type": "transactional-db"},
+      {"name": "get-stock-level", "type": "direct-query"},
+      {"name": "fetch-supplier-data", "type": "external-api"}
+    ],
+    "philosophyNotes": "For 99% of use cases, a well-designed relational database with proper transaction isolation levels can handle concurrency perfectly. This approach is less complex, requires less infrastructure, and is easier to reason about than event sourcing."
+  },
+  "expectedAgreement": 65,
+  "expectedConflicts": ["FUNDAMENTAL_PHILOSOPHY_MISMATCH", "DATA_MODEL_DESIGN"],
+  "steelmanPoints": {
+    "forPlanA": [
+      "Provides a complete, auditable history of every inventory change, which is invaluable for business intelligence.",
+      "Separating read and write models (CQRS) allows for independent and massive scaling of queries.",
+      "Time-travel debugging: can investigate the state of the warehouse at any point in the past."
+    ],
+    "forPlanB": [
+      "Vastly simpler to implement and requires less specialized knowledge.",
+      "The current state is always immediately consistent and available, with no eventual consistency lag.",
+      "Leverages the power and reliability of decades of database technology."
+    ]
+  },
+  "synthesisExpectation": {
+    "viable": true,
+    "recommendedStrategy": "PHASE_BASED",
+    "keyDecisions": [
+      "Start with Plan B's simpler CRUD model to get the system operational quickly and meet immediate business needs.",
+      "Introduce an 'InventoryChangeEvent' that is published on every successful stock update.",
+      "This event can be consumed by an 'AuditTrailService' (a nod to Plan A), creating a hybrid model.",
+      "This allows for future migration to full event sourcing if the scale demands it, without the upfront complexity."
+    ],
+    "warnings": ["A full event-sourcing model might be an over-engineered solution for the initial requirements."]
+  }
+}

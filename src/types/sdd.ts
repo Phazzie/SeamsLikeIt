@@ -14,31 +14,70 @@ export interface ContractResult<T> {
   metadata?: Record<string, any>;
 }
 
-export interface SeamDefinition {
-  id: string;
-  name: string;
-  description: string;
-  participants: {
-    producer: ComponentDefinition;
-    consumer: ComponentDefinition;
-  };
-  dataFlow: {
-    input: InterfaceDefinition;
-    output: InterfaceDefinition;
-  };
-  purpose: string;
-  businessRules?: string[];
-  errorScenarios?: ErrorScenario[];
-}
+import { z } from 'zod';
 
-export interface ComponentDefinition {
-  id: string;
-  name: string;
-  purpose: string;
-  responsibilities: string[];
-  dependencies?: string[];
-  domainContext?: string;
-}
+export const ComponentDefinitionSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  purpose: z.string(),
+  responsibilities: z.array(z.string()),
+  dependencies: z.array(z.string()).optional(),
+  domainContext: z.string().optional(),
+});
+
+export const SeamDefinitionSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string(),
+  participants: z.object({
+    producer: ComponentDefinitionSchema,
+    consumer: ComponentDefinitionSchema,
+  }),
+  dataFlow: z.object({
+    input: z.object({
+      name: z.string(),
+      fields: z.array(z.object({
+        name: z.string(),
+        type: z.string(),
+        required: z.boolean(),
+        description: z.string().optional(),
+        constraints: z.array(z.string()).optional(),
+      })),
+      validation: z.array(z.object({
+        field: z.string(),
+        rule: z.string(),
+        errorMessage: z.string(),
+      })).optional(),
+    }),
+    output: z.object({
+      name: z.string(),
+      fields: z.array(z.object({
+        name: z.string(),
+        type: z.string(),
+        required: z.boolean(),
+        description: z.string().optional(),
+        constraints: z.array(z.string()).optional(),
+      })),
+      validation: z.array(z.object({
+        field: z.string(),
+        rule: z.string(),
+        errorMessage: z.string(),
+      })).optional(),
+    }),
+  }),
+  purpose: z.string(),
+  businessRules: z.array(z.string()).optional(),
+  errorScenarios: z.array(z.object({
+    condition: z.string(),
+    errorType: z.string(),
+    handling: z.string(),
+    userMessage: z.string().optional(),
+  })).optional(),
+});
+
+export interface ComponentDefinition extends z.infer<typeof ComponentDefinitionSchema> {}
+export interface SeamDefinition extends z.infer<typeof SeamDefinitionSchema> {}
+
 
 export interface InterfaceDefinition {
   name: string;

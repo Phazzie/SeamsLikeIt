@@ -1,0 +1,24 @@
+{
+  "id": "error-004",
+  "name": "Reference Errors",
+  "description": "Tests if the system can detect logical errors within the plans, such as a seam referencing a component that does not exist in the component list.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "A valid approach",
+    "components": [
+      {"name": "ComponentA"},
+      {"name": "ComponentB"}
+    ],
+    "seams": [
+      {"name": "seam1", "participants": ["ComponentA", "ComponentC"]}
+    ]
+  },
+  "planB": {
+    "aiId": "AI-Beta",
+    "approach": "A valid approach",
+    "components": [
+      {"name": "ComponentX"},
+      {"name": "ComponentY"}
+    ]
+  }
+}

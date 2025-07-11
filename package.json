@@ -19,7 +19,15 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "tsc --noEmit",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "start:prod": "NODE_ENV=production node dist/http-server-secure.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop all",
+    "pm2:restart": "pm2 restart all",
+    "pm2:logs": "pm2 logs",
+    "pm2:monit": "pm2 monit",
+    "persistent": "./start-persistent.sh",
+    "monitor": "./monitor.sh"
   },
   "keywords": [
     "mcp",
@@ -50,6 +58,7 @@
     "express": "^5.1.0",
     "express-rate-limit": "^7.1.5",
     "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^3.3.2",
     "openai": "^5.8.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

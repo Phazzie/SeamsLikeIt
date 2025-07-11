@@ -1,0 +1,43 @@
+{
+  "id": "edge-001",
+  "name": "Circular Dependencies",
+  "requirements": "Design a system for a university where a Student can enroll in a Course, and a Course must have an enrolled Student to be active. Furthermore, a Student's tuition is calculated based on their enrolled Courses, and Courses can only be scheduled if they have enough tuition-paying Students. This creates a circular dependency between Students and Courses.",
+  "planA": {
+    "aiId": "AI-Alpha",
+    "approach": "Attempt to model the requirements directly, which will likely expose the circular dependency in the component diagram.",
+    "expectedComponents": [
+      {"name": "Student", "dependencies": ["Course"]},
+      {"name": "Course", "dependencies": ["Student"]}
+    ],
+    "expectedSeams": [
+      {"name": "enrollment", "type": "dependency"},
+      {"name": "tuition-calculation", "type": "dependency"}
+    ],
+    "philosophyNotes": "A direct translation of requirements is the most honest first step. The resulting circular dependency is a flaw in the requirements, not the model, and should be exposed as such."
+  },
+  "planB": {
+    "aiId": "AI-Beta", 
+    "approach": "Break the circular dependency by introducing a third, higher-level component or using an event-based approach.",
+    "expectedComponents": [
+      {"name": "StudentService"},
+      {"name": "CourseService"},
+      {"name": "EnrollmentService", "dependencies": ["StudentService", "CourseService"]}
+    ],
+    "expectedSeams": [
+      {"name": "student-enrolls-in-course", "type": "event"},
+      {"name": "course-confirms-enrollment", "type": "event"}
+    ],
+    "philosophyNotes": "Circular dependencies in requirements are common. The architect's job is to resolve them. An Enrollment service or an event-driven model breaks the cycle and represents a more mature architecture."
+  },
+  "expectedAgreement": 40,
+  "expectedConflicts": ["CIRCULAR_DEPENDENCY_DETECTED", "MODEL_STRUCTURE_INVALID"],
+  "synthesisExpectation": {
+    "viable": false,
+    "recommendedStrategy": "REJECT_AND_PROPOSE_ALTERNATIVE",
+    "keyDecisions": [
+      "Both initial plans are flawed. Plan A is invalid, and Plan B is a valid solution but not a direct synthesis.",
+      "The correct action is to flag the circular dependency and propose a solution like Plan B's EnrollmentService or an event-driven approach as the resolution."
+    ],
+    "warnings": ["The system should explicitly forbid the creation of architectures with direct circular dependencies."]
+  }
+}
